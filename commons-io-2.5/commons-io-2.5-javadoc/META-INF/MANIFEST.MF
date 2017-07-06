@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Implementation-Vendor: The Apache Software Foundation
+Implementation-Title: Apache Commons IO
+Implementation-Version: 2.5
+Implementation-Vendor-Id: commons-io
+Built-By: benson
+Build-Jdk: 1.7.0_95
+Specification-Vendor: The Apache Software Foundation
+Specification-Title: Apache Commons IO
+Created-By: Apache Maven 3.0.4
+Specification-Version: 2.5
+Archiver-Version: Plexus Archiver
+
