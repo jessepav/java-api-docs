@@ -13,6 +13,8 @@
                    `»    --` Download: [commons-io-2.5.jar](jars/commons-io-2.5.jar)
 - Commons Exec 1.3 [(no frames)](commons-exec-1.3/javadoc/allclasses-noframe.html) [(frames)](commons-exec-1.3/javadoc/index.html)  
                    `»    --` Download: [commons-exec-1.3.jar](jars/commons-exec-1.3.jar)
+- Commons Codec 1.10 [(no frames)](commons-codec-1.10/javadoc/allclasses-noframe.html) [(frames)](commons-codec-1.10/javadoc/index.html)  
+                     `»    --` Download: [commons-codec-1.10.jar](jars/commons-codec-1.10.jar)
 - Joda Time 2.9.4  [(no frames)](joda-time-2.9.4/joda-time-2.9.4-javadoc/allclasses-noframe.html) [(frames)](joda-time-2.9.4/joda-time-2.9.4-javadoc/index.html)  
                    `»    --` Download: [joda-time-2.9.4.jar](jars/joda-time-2.9.4.jar)
 - JDBM 2.4  [(no frames)](jdbm2/api/allclasses-noframe.html) [(frames)](jdbm2/api/index.html)  
