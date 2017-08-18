@@ -17,6 +17,8 @@
                      `»    --` Download: [commons-codec-1.10.jar](jars/commons-codec-1.10.jar)
 - Commons Collections [(no frames)](commons-collections4-4.1/apidocs/allclasses-noframe.html) [(frames)](commons-collections4-4.1/apidocs/index.html)  
                      `»    --` Download: [commons-collections4-4.1.jar](jars/commons-collections4-4.1.jar)
+- Commons CSV [(no frames)](commons-csv-1.4/apidocs/allclasses-noframe.html) [(frames)](commons-csv-1.4/apidocs/index.html)  
+			  `»    --` Download: [commons-csv-1.4.jar](jars/commons-csv-1.4.jar)
 - Joda Time 2.9.4  [(no frames)](joda-time-2.9.4/joda-time-2.9.4-javadoc/allclasses-noframe.html) [(frames)](joda-time-2.9.4/joda-time-2.9.4-javadoc/index.html)  
                    `»    --` Download: [joda-time-2.9.4.jar](jars/joda-time-2.9.4.jar)
 - JDBM 2.4  [(no frames)](jdbm2/api/allclasses-noframe.html) [(frames)](jdbm2/api/index.html)  
