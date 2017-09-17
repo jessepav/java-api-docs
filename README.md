@@ -19,7 +19,7 @@
                    `»    --` Download: [commons-io-2.5.jar](jars/commons-io-2.5.jar)
 - Commons Lang 3.4 [(no frames)](commons-lang3-3.4/apidocs/allclasses-noframe.html) [(frames)](commons-lang3-3.4/apidocs/index.html)  
                    `»    --` Download: [commons-lang3-3.4.jar](jars/commons-lang3-3.4.jar)
-- ftp4j 1.7.2 [(no frames)](ftp4j-1.7.2/api/allclasses-noframe.html) [(frames)](ftp4j-1.7.2/api/index.html)
+- ftp4j 1.7.2 [(no frames)](ftp4j-1.7.2/api/allclasses-noframe.html) [(frames)](ftp4j-1.7.2/api/index.html)  
               `»    --` Download: [ftp4j-1.7.2.jar](jars/ftp4j-1.7.2.jar)
 - JDBM 2.4  [(no frames)](jdbm2/api/allclasses-noframe.html) [(frames)](jdbm2/api/index.html)  
             `»    --` Download: [jdbm-2.4.jar](jars/jdbm-2.4.jar)
@@ -31,7 +31,7 @@
                         `»    --` Download: [jgoodies-forms-1.7.2.jar](jars/jgoodies-forms-1.7.2.jar)
 - Joda Time 2.9.4  [(no frames)](joda-time-2.9.4/joda-time-2.9.4-javadoc/allclasses-noframe.html) [(frames)](joda-time-2.9.4/joda-time-2.9.4-javadoc/index.html)  
                    `»    --` Download: [joda-time-2.9.4.jar](jars/joda-time-2.9.4.jar)
-- jSerialComm-1.3.11 [(no frames)](jSerialComm-1.3.11/allclasses-noframe.html) [(frames)](jSerialComm-1.3.11/index.html)
+- jSerialComm-1.3.11 [(no frames)](jSerialComm-1.3.11/allclasses-noframe.html) [(frames)](jSerialComm-1.3.11/index.html)  
               `»    --` Download: [jSerialComm-1.3.11.jar](jars/jSerialComm-1.3.11.jar)
 
 
