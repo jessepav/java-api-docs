@@ -1,0 +1,85 @@
+<HTML>
+
+<!-- Mirrored from reportmill.com/support/SupportHints.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:25 GMT -->
+<HEAD>
+<TITLE>ReportMill - Support Hints</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#CB0017" ALINK="#AA0000" VLINK="#808080">
+
+<script src="../shared/navbar.js" ></script>
+
+<p><FONT SIZE=2 FACE="Arial, Helvetica, sans-serif" COLOR=#CB0017><A HREF="http://www.reportmill.com/">HOME</A> 
+  &gt; <a href="http://reportmill.com/">SUPPORT</a> &gt; SUPPORT HINTS </FONT><BR>
+  <BR>
+  <FONT FACE="Georgia, Times, Times New Roman" SIZE=5><strong>Support Hints</strong></FONT></p>
+<blockquote>
+  <p><font size="3" face="Georgia, Times, Times New Roman">
+    <a href="#ProvideDataset">Providing a Template and Dataset</a><br>
+    <a href="#IsolateProblem">Isolating the Problem</a><br>
+    <a href="#OneAtATime">One at a Time</a></font></p>
+</blockquote>
+<br>
+<TABLE WIDTH=640 height="734" BORDER=0 CELLPADDING=0 CELLSPACING=0>
+  <TR VALIGN=TOP> 
+    <TD WIDTH=4 height="734">&nbsp;</TD>
+    <TD width="636" align="left"><strong><font size="4" face="Georgia, Times New Roman, Times, serif">Providing
+          a Template and Dataset<a name="ProvideDataset"></a></font></strong>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">Almost any behavior found with ReportMill in your application can be
+        reproduced in the ReportMill designer with the original template and
+        an XML dataset file of the exact Java dataset used in your application.
+        If you encounter a problem, simply add a call to write the dataset before
+        or after your call to generateReport, using the same arguments:</font></p>
+      <blockquote>
+        <p><font size="2" face="Courier New, Courier, mono">// Write XML dataset
+            for data causing unwanted behavior<br>
+            new RMXMLWriter().writeObject(myDataset, &quot;\\Temp\\Dataset.xml&quot;);<br>
+            <br>
+            // Normal generate report call<br>
+            myTemplate.generateReport(myDataset);
+</font> </p>
+      </blockquote>
+      <strong><font size="4" face="Georgia, Times New Roman, Times, serif">Isolating
+      the Problem<a name="IsolateProblem"></a> </font></strong>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">To get the quickest and best response from ReportMill support, isolate
+        the problem that you see in your template. This basically means removing
+        everything possible that is working correctly:</font></p>
+      <ul>
+        <li><font size="3" face="Georgia, Times New Roman, Times, serif">Page headers/footers, such as titles, logos, page number tags, etc.</font></li>
+        <li><font size="3" face="Georgia, Times New Roman, Times, serif">Unneeded table rows, such as Header or Summary rows that don't
+          effect the outcome </font></li>
+        <li><font size="3" face="Georgia, Times New Roman, Times, serif">Groupings that don't effect the outcome</font></li>
+        <li><font size="3" face="Georgia, Times New Roman, Times, serif">Peer columns that don't effect the outcome </font></li>
+        <li><font size="3" face="Georgia, Times New Roman, Times, serif">TableGroup peer or child tables that don't effect the outcome</font></li>
+        <li><font size="3" face="Georgia, Times New Roman, Times, serif">Template pages that are unrelated to the problem</font></li>
+      </ul>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">Sometimes
+          this process of removing everything that &quot;is not&quot; the problem
+        is iterative - you might try removing a header row, hitting preview,
+        and if the problem is still visible, you do a save. You might even employ
+        a binary search technique for large templates - deleting half of the
+        table group tables, test for the problem, and either do a save or revert
+        (then repeat until the problem is pinpointed as best possible).</font></p>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">Customers can also sometimes edit their dataset, either from inside
+        their program or in the XML dataset file to further reduce the extraneous
+        data. By pinpointing the problem you are facing, you can improve ReportMill's
+    ability to identity and solve the problem.</font></p>
+      <p><strong><font size="4" face="Georgia, Times New Roman, Times, serif">One at
+          a Time</font></strong><strong><font size="4" face="Georgia, Times New Roman, Times, serif"><a name="OneAtATime" id="OneAtATime"></a></font></strong></p>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">Though
+          it seems sensible to group several questions in one mail to save traffic,
+          it makes it harder to delegate specific   problem to different
+          engineers and harder to keep a cohesive response thread.</font></p>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">Don't feel bad about sending several small emails, each containing a
+        separate issue. ReportMill works best with questions in this manner!</font></p>
+      <p>&nbsp;  </p></TD>
+  </TR>
+</TABLE>
+</BODY>
+
+
+<!-- Mirrored from reportmill.com/support/SupportHints.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:25 GMT -->
+</HTML>
+
+
+

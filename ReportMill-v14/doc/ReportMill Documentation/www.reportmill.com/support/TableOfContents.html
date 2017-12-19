@@ -1,0 +1,47 @@
+<HTML>
+
+<!-- Mirrored from www.reportmill.com/support/TableOfContents.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:20 GMT -->
+<HEAD>
+<TITLE>ReportMill - Table of Contents</TITLE>
+<META NAME="keywords" CONTENT="ReportMill, Report, Mill, Object Reporting, Dynamic PDF, Reports, Reporting, Crystal Reports, Business Intelligence"> 
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#CB0017" ALINK="#AA0000" VLINK="#808080">
+
+<script src="../../reportmill.com/shared/navbar.js" ></script>
+
+<p><FONT SIZE=1 FACE="Verdana, Helvetica, Arial" COLOR=#CB0017><A HREF="http://www.reportmill.com/">HOME</A> 
+  &gt; <a href="http://www.reportmill.com/">SUPPORT</a> &gt; TABLE OF CONTENTS</FONT><BR>
+  <BR>
+<FONT FACE="Georgia, Times, Times New Roman" SIZE=5>Table of Contents in Reports </FONT></p>
+<TABLE WIDTH=686 height="734" BORDER=0 CELLPADDING=0 CELLSPACING=0>
+  <TR VALIGN=TOP> 
+    <TD WIDTH=4 height="734">&nbsp;</TD>
+    <TD width="682" align="left"><p><font size="5"><strong>Overview</strong></font></p>
+      <p>ReportMill has a simple facility for creating a table of contents at the beginning of a report. To achieve this for any given template, do the following:</p>
+      <ul>
+        <li>On the first page of your template, select the menu item &quot;Pages -&gt; Add Page Previous&quot;</li>
+        <li>On that page, add a new Table using the &quot;Add Shapes&quot; button on the ToolBar.</li>
+        <li>Configure the DatasetKey for this table to be: TOC.&lt;dataset-key&gt;.&lt;grouping-key&gt;</li>
+        <li>Configure the first column of the table to use a descriptive key for your grouping</li>
+        <li>Configure the second column of the table to use the @page@ key (lowercase)</li>
+      </ul>
+      <p>So, for instance, if I have a table in my report that uses the &quot;Movies&quot; dataset key and has a &quot;getStudios&quot; grouping, I would configure the table to have this grouping key:</p>
+      <p><center>@TOC.Movies.getStudio@</center></p>
+      <p>And these columns:</p>
+      <p><center>
+        <p>@Row@. @getStudio.Name@&nbsp;&nbsp;&nbsp;&nbsp;...&nbsp;&nbsp;&nbsp;&nbsp;@page@</p>
+        <p>&nbsp;</p>
+      </center></p>
+      <p>Here's an example of that template (<a href="TableOfContents.rpt">TableOfContents.rpt</a>):</p>
+    <p><center><img src="TableOfContents.jpg" width="284" height="363" alt=""/></center></p></TD>
+  </TR>
+</TABLE>
+</BODY>
+
+
+<!-- Mirrored from www.reportmill.com/support/TableOfContents.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:21 GMT -->
+</HTML>
+
+
+

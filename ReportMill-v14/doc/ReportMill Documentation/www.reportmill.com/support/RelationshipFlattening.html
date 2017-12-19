@@ -1,0 +1,74 @@
+<HTML>
+
+<!-- Mirrored from www.reportmill.com/support/RelationshipFlattening.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:23 GMT -->
+<HEAD>
+<TITLE>ReportMill - Relationship Flattening</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#CB0017" ALINK="#AA0000" VLINK="#808080">
+
+<script src="../../reportmill.com/shared/navbar.js" ></script>
+
+<p><FONT SIZE=2 FACE="Arial, Helvetica, sans-serif" COLOR=#CB0017><A HREF="http://www.reportmill.com/">HOME</A> 
+  &gt; <a href="http://www.reportmill.com/">SUPPORT</a> &gt; RELATIONSHIP FLATTENING </FONT><BR>
+  <BR>
+<FONT FACE="Georgia, Times, Times New Roman" SIZE=5><strong>Relationship Flattening</strong></FONT></p>
+<TABLE WIDTH=640 height="734" BORDER=0 CELLPADDING=0 CELLSPACING=0>
+  <TR VALIGN=TOP> 
+    <TD WIDTH=4 height="734">&nbsp;</TD>
+    <TD width="636" align="left"><strong><font size="4" face="Georgia, Times New Roman, Times, serif">Overview</font></strong>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">One of
+          the most important concepts in ReportMill is that of &quot;Dataset Keys&quot;.
+          ReportMill has a number of dataset elements used to display datasets
+          (tables, graphs,  crosstabs, labels). Each of these expect
+          a &quot;dataset key&quot; to identify the dataset they should display.</font></p>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">For instance,
+          a simple report using the sample Hollywood dataset might have a table
+          that iterates over all the studios from the given datasource. This
+          table might use the &quot;Studios&quot; dataset key and show one record/table-row
+          for each studio.</font></p>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">Now it's
+          also common for dataset objects to each have a list themselves, in
+          a &quot;master-detail&quot; type construct. In this case, each studio has a
+          list of movies released by that studio. And, in rare cases, you may
+          find that though your application only provides data of a higher level
+          entity, like Studio, you may actually want to run a report on a consolidated
+          dataset of a child entity, like a combined list of each Studio's list
+          of movies.</font></p>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">To handle
+          this, ReportMill has a feature that lets you automatically get  a
+          consolidated set of objects derived from a child dataset found in each
+          object of a &quot;master&quot; dataset. In the case of our example, we could
+          run a report on movies by setting the table dataset key to &quot;Studios.getMovies&quot;.</font> </p>
+      <strong><font size="4" face="Georgia, Times New Roman, Times, serif">Reports
+      Independent of the Master</font></strong>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">One of
+          the most important aspects of relationship flattening is that it lets
+          you create reports that are independent of the actual &quot;master&quot;. Once
+          we have chose the dataset key &quot;Studios.getMovies&quot;, the actual root
+          entity is a Movie. So we can easily show a report of all movies in
+          our dataset grouped by Category and ignore the fact that the movies
+          originally came from a list of studios.</font></p>
+      <p><strong><font size="4" face="Georgia, Times New Roman, Times, serif">Accessing
+            the Master</font></strong></p>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">Even though
+          relationship flattening effectively gives us a list of the &quot;details&quot;
+          from the master-detail construct, it is often still handy to reference
+          the Master, particularly if the details don't have an explicit back-pointer.
+          This can be done in one of two ways. The first is that you can simply
+          use the prefix of your dataset key. So if the studio has a &quot;getStudioName&quot;
+          attribute, you can reference it with the &quot;Studios.getStudioName&quot; key.
+          Also, ReportMill will recognize a reference to the Master's class,
+          so if each object in Studios is of class Studio, you can also use the
+          key &quot;Studio.getStudioName&quot;. </font></p>
+    </TD>
+  </TR>
+</TABLE>
+</BODY>
+
+
+<!-- Mirrored from www.reportmill.com/support/RelationshipFlattening.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:23 GMT -->
+</HTML>
+
+
+

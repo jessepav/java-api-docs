@@ -1,0 +1,71 @@
+<HTML>
+
+<!-- Mirrored from www.reportmill.com/support/JDBC.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:22 GMT -->
+<HEAD>
+<TITLE>ReportMill - Simple JDBC Reports</TITLE>
+<META NAME="keywords" CONTENT="ReportMill, Report, Mill, Object Reporting, Dynamic PDF, Reports, Reporting, Crystal Reports, Business Intelligence"> 
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#CB0017" ALINK="#AA0000" VLINK="#808080">
+
+<script src="../../reportmill.com/shared/navbar.js" ></script>
+
+<p><FONT SIZE=1 FACE="Verdana, Helvetica, Arial" COLOR=#CB0017><A HREF="http://www.reportmill.com/">HOME</A> 
+  &gt; <a href="http://www.reportmill.com/">SUPPORT</a> &gt; SIMPLE JDBC REPORTS </FONT><BR>
+  <BR>
+<FONT FACE="Georgia, Times, Times New Roman" SIZE=5>Simple JDBC Reports </FONT></p>
+<TABLE WIDTH=686 height="734" BORDER=0 CELLPADDING=0 CELLSPACING=0>
+  <TR VALIGN=TOP> 
+    <TD WIDTH=4 height="734">&nbsp;</TD>
+    <TD width="682" align="left"><p><font size="5"><strong>Overview</strong></font></p>
+      <p>ReportMill works with any kind of Java dataset: EJBs, custom Java classes,
+        Java Collections classes, JDBC ResultSets or any combination/hierarchy
+        of the above. ReportMill is most powerful when used with EJBs and custom
+        Java classes (perhaps loaded with an object-relational mapping tool),
+        because it can take advantage of custom business logic in your derived
+        attribute methods. However, sometimes it can be convenient to make a quick
+        JDBC fetch and generate a report on the results.</p>
+      <p>Here's an example of a few simple lines of code to do that: </p>
+      <p><font color="#FF0000" size="2" face="Courier New, Courier, mono">&nbsp;&nbsp;//
+          Get DB Connection info</font><font size="2" face="Courier New, Courier, mono"><br>
+        &nbsp;&nbsp;String url = &quot;jdbc:mydbdriver://mydb.domain.com/test&quot;;<br>
+        &nbsp;&nbsp;String user = &quot;whoever&quot;;<br>
+        &nbsp;&nbsp;String password = &quot;whatever&quot;;<br>
+        <br>
+          </font><font color="#FF0000" size="2" face="Courier New, Courier, mono">&nbsp;&nbsp;//
+          Get connection and execute SQL Query</font><font size="2" face="Courier New, Courier, mono"><br>
+        &nbsp;&nbsp;Connection db = DriverManager.getConnection(url, user, password);<br>
+        &nbsp;&nbsp;Statement st = db.createStatement();<br>
+        &nbsp;&nbsp;ResultSet resultSet = st.executeQuery(&quot;select * from MY_TABLE&quot;);</font></p>
+      <p><font color="#FF0000" size="2" face="Courier New, Courier, mono">&nbsp;&nbsp;//
+          Generate XML for ResultSet (only do this once to get XML dataset for
+          designer)</font><font size="2" face="Courier New, Courier, mono"><br>
+  &nbsp;&nbsp;new RMXMLWriter().writeObject(resultSet, &quot;C:/Dataset.xml&quot;);<br>
+      <br>
+        </font><font color="#FF0000" size="2" face="Courier New, Courier, mono">&nbsp;&nbsp;//
+        Load template from aSource (File, String path, InputStream, URL, byte[],
+        etc.)</font><font size="2" face="Courier New, Courier, mono"><br>
+          &nbsp;&nbsp;RMDocument template = new RMDocument(aSource);<br>
+          <br>
+          <font color="#FF0000">&nbsp;&nbsp;// Generate report from result set and get PDF</font><br>
+          &nbsp;&nbsp;RMDocument report = template.generateReport(resultSet);<br>
+          &nbsp;&nbsp;byte pdf[] = report.getBytesPDF(); // or report.write(&quot;/tmp/MyReport.pdf&quot;)</font></p>
+      <p>&nbsp;</p>
+      <p><font size="5"><strong>JDBC in the Design Application </strong></font></p>
+      <p>ReportMill does offer JDBC connection and query definition in the design
+        application's &quot;Connect to DataSource&quot; panel. This allows you to define
+        a template based on a simple query. However, it is generally expected
+        at runtime the data will be provided using JDBC code similiar to the
+        above. </p>
+      <p>&nbsp;</p>
+    </TD>
+  </TR>
+</TABLE>
+</BODY>
+
+
+<!-- Mirrored from www.reportmill.com/support/JDBC.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:22 GMT -->
+</HTML>
+
+
+

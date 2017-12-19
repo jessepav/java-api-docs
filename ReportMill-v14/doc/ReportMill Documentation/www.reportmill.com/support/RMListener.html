@@ -1,0 +1,109 @@
+<HTML>
+
+<!-- Mirrored from www.reportmill.com/support/RMListener.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:22 GMT -->
+<HEAD>
+<TITLE>ReportMill - ReportMill Listener</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#CB0017" ALINK="#AA0000" VLINK="#808080">
+
+<script src="../../reportmill.com/shared/navbar.js" ></script>
+
+<p><FONT SIZE=1 FACE="Verdana, Helvetica, Arial" COLOR=#CB0017><A HREF="http://www.reportmill.com/">HOME</A> 
+  &gt; <a href="http://www.reportmill.com/">SUPPORT</a> &gt; REPORTMILL LISTENER</FONT><BR>
+  <BR>
+  <FONT FACE="Georgia, Times, Times New Roman" SIZE=5>ReportMill Listener</FONT></p>
+<TABLE WIDTH=715 height="734" BORDER=0 CELLPADDING=0 CELLSPACING=0>
+  <TR VALIGN=TOP> 
+    <TD WIDTH=1 height="734">&nbsp;</TD>
+    <TD width="714" align="left"><p><font size="5"><strong>Overview</strong></font></p>
+      <p>ReportMill provides support to generate almost any document dynamically 
+        by configuring the template in the design application. However, it's impossible 
+        to anticipate every need or provide a switch to solve every problem. To 
+        address this, ReportMill provides a simple listener mechanism to make 
+        almost anything possible with a very simple API. This is done by passing 
+        a ReportMill.Listener to a given generateReport() call. Here's an example 
+        of calling generateReport() with a listener to paint a specific text field 
+        red when the value is negative.</p>
+      <p><font color="#FF0000" size="2" face="Courier New, Courier, mono">// Imports </font><font size="2" face="Courier New, Courier, mono"><br>
+        import com.reportmill.base.*;<br>
+        import com.reportmill.shape.*;</font><font size="2" face="Courier New, Courier, mono"><br><br>
+        </font><font color="#FF0000" size="2" face="Courier New, Courier, mono">//
+        Generate report with a ReportMill.Listener</font><font size="2" face="Courier New, Courier, mono"><br>
+RMDocument report = template.generateReport(myJavaDataset, new RMListener());<br>
+<br>        </font><font color="#FF0000" size="2" face="Courier New, Courier, mono">//
+        Create a ReportMill.Listener to color the &quot;RevenueText&quot; red
+        when negative</font><font size="2" face="Courier New, Courier, mono"><br>
+        public static class RMListener implements ReportMill.Listener {<br>
+        <br>
+&nbsp;&nbsp;public void didFillShape(ReportMill aReportMill, RMShape aShape,
+ RMShape aCopy) {<br>
+        <br>
+&nbsp;&nbsp;&nbsp;&nbsp;if(aShape.getName().equals(&quot;RevenueText&quot;)) 
+        &amp;&amp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((RMTextShape)aCopy).getText().startsWith(&quot;-&quot;))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aCopy.setColor(RMColor.red);<br>
+&nbsp;&nbsp;}<br>
+      }</font></p>
+      <p>The only thing necessary to work with a report element in this way is
+         to name it. You can name a report element by filling in the &quot;Name:&quot; 
+        text field in the &quot;General Inspector &quot; (betwee the placement
+        inspector and the animation inspector). As you can see from the code,
+        this is necessary anyway to uniquely identify an element. However, note
+        that didFillShape() will not even be called for shapes that do not have
+        a name (for the sake of efficiency).</p>
+      <p>Also, note that the didFillShape() method is called with two shapes. 
+        The first is the shape in the template. The second is the &quot;generated&quot; 
+        shape that will appear in the final report. And although our example just 
+        shows a text field, it can often be useful to use this mechanism for table 
+        rows, tables or anything.</p>
+      <p><font size="5"><strong>Example 1 - Adding a table column divider line</strong></font></p>
+      <p>This listener adds a vertical line to a table starting from below the 
+        header row and running all the way down through the last row of the table.</p>
+      <p><font size="2" face="Courier New, Courier, mono">public static class 
+        RMListener implements ReportMill.Listener {<br>
+        <br>
+        &nbsp;&nbsp;public void didFillShape(ReportMill aReportMill, RMShape aShape, 
+        RMShape aCopy) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;if(aShape.getName().equals(&quot;MyTable&quot;)) 
+        {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float y1 = aCopy.getChild(1).getY();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;float y2 = aCopy.getChildLast().getBounds().maxY();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RMLineSegment line = new RMLineSegment(180, 
+        y1, 180, y2);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aCopy.addChild(line);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;}</font></p>
+      <p><font size="2" face="Courier New, Courier, mono">}</font></p>
+      <p><font size="5"><strong>Example 2 - Gray bar completion for tables with 
+        alternate rows</strong></font></p>
+      <p><font size="2" face="Courier New, Courier, mono">public class RMListener 
+        implements ReportMill.Listener {</font></p>
+      <p><font size="2" face="Courier New, Courier, mono">public void didFillShape(ReportMill 
+        aReportMill, RMShape aShape, RMShape aCopy) {<br>
+        <br>
+        &nbsp;&nbsp;if(aShape.getName().equals(&quot;WhateverTable&quot;)) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;while(aCopy.getChildLast().getBounds().maxY()+20 
+        &lt; aCopy.getHeight()) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RMRectangle rect = new RMRectangle();<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rect.setBounds(0, aCopy.getChildLast().getBounds().maxY(), 
+        aCopy.getWidth(), 20);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(aCopy.getChildCount()%2==0)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rect.setColor(RMColor.lightGray);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aCopy.addChild(rect);<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;}<br>
+        }</font></p>
+      <p><font size="2" face="Courier New, Courier, mono">}</font></p>
+      <p>&nbsp;</p>
+    </TD>
+  </TR>
+</TABLE>
+</BODY>
+
+
+<!-- Mirrored from www.reportmill.com/support/RMListener.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:22 GMT -->
+</HTML>
+
+
+

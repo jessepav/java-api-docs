@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document version="10" show-margin="true" snap-margin="true" margin="36 36 36 36" null-string="&lt;NA&gt;">
+  <datasource name="HollywoodDB" source="Jar:/com/reportmill/examples/HollywoodDB.xml" />
+  <page width="612" height="792">
+    <table x="36" y="181" width="540" height="575" list-key="TOC.Movies.getStudio">
+      <grouping key="TOC.Movies.getStudio" details="true" />
+      <tablerow width="540" height="18" asize="---,--~" asize-height="true" title="TOC.Movies.getStudio Details">
+        <text width="68" height="18" asize="~~~,~~~" asize-height="true" />
+        <text x="68" width="259" height="18" asize="~~~,~~~" asize-height="true">
+          <string>@Row@. @getStudio.getName@</string>
+        </text>
+        <text x="327" width="21" height="18" asize="~~~,~~~" asize-height="true">
+          <pgraph align="right" />
+          <string>... </string>
+        </text>
+        <text x="348" width="192" height="18" asize="~~~,~~~" asize-height="true">
+          <string>@page@</string>
+        </text>
+      </tablerow>
+    </table>
+    <text x="36" y="36" width="540" height="112">
+      <stroke />
+      <fill color="#9eceff" />
+      <fill type="shadow" color="#000000a6" radius="4" dx="5" dy="5" />
+      <font name="Arial Bold" size="64" />
+      <pgraph align="center" />
+      <string>Studios Report&#10;</string>
+      <font name="Arial" size="12" />
+      <string>&#10;Table of Contents</string>
+    </text>
+  </page>
+  <page width="612" height="792">
+    <table x="36" y="62.5" width="540" height="627.5" list-key="Movies">
+      <grouping key="getStudio" details="true" />
+      <grouping key="Movies" details="true" />
+      <tablerow width="540" height="85" asize="---,--~" asize-height="true" title="getStudio Details">
+        <stroke />
+        <fill color="#ceffce" />
+        <text width="270" height="85" asize="~~~,~~~" asize-height="true">
+          <font name="Arial Bold" size="24" />
+          <string>@Row@. @getStudio.getName@</string>
+        </text>
+        <text x="270" width="270" height="85" asize="~~~,~~~" asize-height="true">
+          <font name="Arial Bold" size="24" />
+        </text>
+      </tablerow>
+      <tablerow y="101" width="540" height="38" asize="---,--~" asize-height="true" title="Movies Details">
+        <stroke />
+        <text width="270" height="38" asize="~~~,~~~" asize-height="true">
+          <stroke />
+          <font name="Arial Bold" size="26" />
+          <string>@getTitle@</string>
+        </text>
+        <text x="270" width="270" height="38" asize="~~~,~~~" asize-height="true">
+          <stroke />
+          <font name="Arial Bold" size="25" />
+          <format type="number" pattern="$ #,##0.00" null-string="&lt;N/A&gt;" />
+          <pgraph align="right" />
+          <string>@total.getRevenue@</string>
+        </text>
+      </tablerow>
+    </table>
+    <text x="224.5" y="736.5" width="180.5" height="19.5">
+      <font name="Arial" size="14" />
+      <pgraph align="center" />
+      <string>@Page@ of @PageMax@</string>
+    </text>
+  </page>
+</document>

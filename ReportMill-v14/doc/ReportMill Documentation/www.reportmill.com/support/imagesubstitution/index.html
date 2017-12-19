@@ -1,0 +1,150 @@
+<HTML>
+
+
+
+
+<!-- Mirrored from www.reportmill.com/support/imagesubstitution/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:26 GMT -->
+<HEAD>
+
+
+
+  <TITLE>ReportMill - Image Substitution</TITLE>
+
+
+
+
+
+<META NAME="description" CONTENT="ReportMill, object reporting for WebObjects.  Add the power of dynamic reporting to your web and database applications."> 
+
+
+
+<META NAME="keywords" CONTENT="ReportMill, Report, Mill, Object Reporting System, Dynamic PDF, Reports, Reporting, WebObjects, Crystal Reports, WYSIWYG, Rhapsody, Business Intelligence, Mac OS X, OpenStep, NextStep"> 
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+
+
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#CB0017" ALINK="#AA0000" VLINK="#808080">
+<FONT SIZE="1" FACE="Verdana, Helvetica, Arial"> 
+<MAP NAME="menu">
+
+<AREA SHAPE=RECT COORDS="274,7,385,34" HREF="http://www.reportmill.com/siteIndex.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="386,7,507,33" HREF="http://www.reportmill.com/info.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="507,8,637,36" HREF="http://www.reportmill.com/"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="507,35,636,61" HREF="http://www.reportmill.com/company/index.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="6,35,145,62" HREF="http://www.reportmill.com/product/index.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="145,35,268,62" HREF="http://www.reportmill.com/news/index.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="396,34,507,61" HREF="http://www.reportmill.com/index.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="269,34,394,62" HREF="http://www.reportmill.com/customers/index.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+</MAP>
+<TABLE WIDTH="640"  BORDER="0" CELLSPACING="0" CELLPADDING="0">
+
+<TR>
+
+  <TD WIDTH="640">
+
+  <CENTER>
+
+  <IMG SRC="../../images/menu.gif" USEMAP="#menu"  HEIGHT="64" WIDTH="640" ALT="Menu" BORDER="0">
+  </center></TD>
+
+</TR>
+
+</TABLE>
+
+
+
+
+
+</FONT>
+<p><FONT SIZE=1 FACE="Verdana, Helvetica, Arial" COLOR=#CB0017><A HREF="http://www.reportmill.com/">HOME</A> 
+  &gt; <a href="../index-2.html">SUPPORT</a> &gt; IMAGE SUBSTITUTION</FONT><BR>
+  <BR>
+<FONT FACE="Georgia, Times, Times New Roman" SIZE=5>Image Substitution</FONT></p>
+<TABLE WIDTH=638 height="978" BORDER=0 CELLPADDING=0 CELLSPACING=0>
+  <TR VALIGN=TOP> 
+    <TD WIDTH=1 height="978">&nbsp;</TD>
+    <TD width="637" align="left"><p><strong>Overview</strong></p>
+      <p>Most ReportMill customers are very familiar with the text substitution
+        that forms the core of report generation. ReportMill turns tags such
+        as &quot;@Date@&quot; and &quot;Page @Page@ of @PageMax@&quot; into text
+        such as &quot;October
+      21, 1999&quot; and &quot;Page 1 of 12&quot;.</p>
+      <p>However, ReportMill offers another very powerful form of data substitution
+        in the Image Substitution feature. This feature is very useful for embedding
+        images in a report which need to change from report to report (or even
+        from table row to table row)- whether they come from a product image
+        database, the filesystem or a
+        graphics
+      library.</p>
+      <p>To utilize this feature, simply select the Tools-&gt;Add Image Placeholder
+      menu item.</p>
+      <p><strong>Set Image Key </strong></p>
+      <p>When you select the Image placeholder, the inspector will show the attributes
+        of the placeholder. The &quot;Key&quot; field allows you to specify the key or expression that will provide the image data. Simply enter or drag in the key or expression to this field.</p>
+      <p>Usually, this key will be a simple key (like getLogo, getImageData, etc.) but it can be any complex ReportMill expression. Here's an example of how you might construct an image key that uses an actual web service that can return a barcode image, given a number. </p>
+      <blockquote>
+        <p>&quot;http://bcgen.com:7001/ida/servlet/LinearServlet?BARCODE=&quot; + getProductID </p>
+      </blockquote>
+      <p><strong>Value Types</strong></p>
+      <p>With image substitution, ReportMill expects the supplied key to resolve
+          to one of the following types of objects: String, byte[], File or URL.
+        ReportMIll supports the following image types: GIF,
+        TIFF,
+        JPEG,
+        PNG,
+        BMP, and
+        PDF.</p>
+      <p><strong>Passing a String Value</strong></p>
+      <p>If you are providing a string,
+        it should be an absolute path to a file in the file system or a URL to
+        a image available via an HTTP service.</p>      <p><strong>Passing a Byte Array</strong></p>
+      <p>If you provide a byte array (byte[]), it should be exactly the bytes
+      of an image file as it would appear on disk.</p>      <p><strong>Providing Image Data in UserInfo</strong></p>
+      <p>If you added your image placeholder at the root level of your document
+        (or perhaps in the header row of a table) you'll probably want to provide
+        the image data in the UserInfo. The UserInfo parameter is designed for
+        providing this type of additional information.
+        It can
+        be a simple Java.util.Map with a key called &quot;MyImage&quot; corresponding
+        to a value of type String, byte array, etc.</p>
+      <p><strong>Tables: Providing Image Data as an Object Method or Attribute</strong></p>
+      <p>ReportMill
+        performs image substitution using the exact same mechanism as text substitution.
+        If you added your image placeholder to a detail
+        table row, ReportMill will try to evaluate the image key against your
+        table objects (perhaps to show a different image in each row) and use
+        UserInfo as a fallback. This would be the case if you had an Employee
+        object with a method called employeePicture, which returned image data.
+        The key might look like &quot;employeePicture&quot; and
+      return a byte[] loaded from the database.</p>
+      <p><strong>Image Sources</strong></p>
+      <p>Customers have used the image substitution facility to
+          add graphs to their reports from sources such as NetCharts (www.chartworks.com),
+              Pop Charts (www.corda.com) or other graphing libraries. Any source
+              that can
+              provide image data in the aforementioned formats can be used in
+        conjunction with ReportMill.</p>
+      <p><strong>An Example</strong></p>
+      <p>Here's an example of a simple stand-alone Java class that generates
+        a report from an object that knows how to generate a chart using Java
+        2D: [<a href="RMImageTest.java">RMImageTest.java</a>] [<a href="RMImageTest.pdf">RMImageTest.pdf</a>]</p>
+      <p>&nbsp;</p></TD>
+  </TR>
+</TABLE>
+</BODY>
+
+
+<!-- Mirrored from www.reportmill.com/support/imagesubstitution/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:27 GMT -->
+</HTML>
+
+
+

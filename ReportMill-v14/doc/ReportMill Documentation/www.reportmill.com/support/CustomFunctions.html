@@ -1,0 +1,174 @@
+<HTML>
+
+
+
+
+<!-- Mirrored from www.reportmill.com/support/CustomFunctions.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:22 GMT -->
+<HEAD>
+
+
+
+  <TITLE>ReportMill - Custom Functions</TITLE>
+
+
+
+
+
+<META NAME="description" CONTENT="ReportMill, object reporting for WebObjects.  Add the power of dynamic reporting to your web and database applications."> 
+
+
+
+<META NAME="keywords" CONTENT="ReportMill, Report, Mill, Object Reporting System, Dynamic PDF, Reports, Reporting, WebObjects, Crystal Reports, WYSIWYG, Rhapsody, Business Intelligence, Mac OS X, OpenStep, NextStep"> 
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+
+
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#CB0017" ALINK="#AA0000" VLINK="#808080">
+<FONT SIZE="1" FACE="Verdana, Helvetica, Arial"> 
+<MAP NAME="menu">
+
+<AREA SHAPE=RECT COORDS="274,7,385,34" HREF="http://www.reportmill.com/siteIndex.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="386,7,507,33" HREF="http://www.reportmill.com/info.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="507,8,637,36" HREF="http://www.reportmill.com/"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="507,35,636,61" HREF="http://www.reportmill.com/company/index.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="6,35,145,62" HREF="http://www.reportmill.com/product/index.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="145,35,268,62" HREF="http://www.reportmill.com/news/index.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="396,34,507,61" HREF="http://www.reportmill.com/index.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="269,34,394,62" HREF="http://www.reportmill.com/customers/index.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+</MAP>
+<TABLE WIDTH="640"  BORDER="0" CELLSPACING="0" CELLPADDING="0">
+
+<TR>
+
+  <TD WIDTH="640">
+
+  <CENTER>
+
+  <IMG SRC="../images/menu.gif" USEMAP="#menu"  HEIGHT="64" WIDTH="640" ALT="Menu" BORDER="0"></center></TD>
+
+</TR>
+
+</TABLE>
+
+
+
+
+
+</FONT>
+<p><FONT SIZE=1 FACE="Verdana, Helvetica, Arial" COLOR=#CB0017><A HREF="http://www.reportmill.com/">HOME</A> 
+  &gt; <a href="http://www.reportmill.com/">SUPPORT</a> &gt; CUSTOM FUNCTIONS </FONT><BR>
+  <BR>
+  <FONT FACE="Georgia, Times, Times New Roman" SIZE=5>Custom Functions</FONT></p>
+<TABLE WIDTH=715 height="734" BORDER=0 CELLPADDING=0 CELLSPACING=0>
+  <TR VALIGN=TOP> 
+    <TD WIDTH=1 height="734">&nbsp;</TD>
+    <TD width="714" align="left"><p><font size="5"><strong>Overview</strong></font></p>
+      <p>Developers can add custom functions to ReportMill simply by implementing
+        a static method that takes an Object arg (or args) in a class that is
+      registered with ReportMill. Here's a sample that would allow developers
+      to use a key like &quot;@floor(getRevenue)@&quot;: </p>
+      <p><font color="#FF0000" size="2" face="Courier New, Courier, mono">//
+        Create a class with one or more static methods that accept Object args </font><font size="2" face="Courier New, Courier, mono"><br>
+        public class RMAddOns  {<br>
+        <br>
+        </font><font color="#FF0000" size="2" face="Courier New, Courier, mono">&nbsp;&nbsp;//
+        This method accepts a single Object arg and returns the Math.floor() </font><font size="2" face="Courier New, Courier, mono"><br>
+        &nbsp;&nbsp;public
+        static Object floor(Object anObj)<br>
+&nbsp;        {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;float value = anObj instanceof Number? ((Number)anObj).floatValue()
+: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return new Float(Math.floor(value));<br>
+&nbsp;&nbsp;}<br>
+}<br>
+<br>
+        </font><font color="#FF0000" size="2" face="Courier New, Courier, mono">//
+        Register class with ReportMill's RMKeyChain class </font><font size="2" face="Courier New, Courier, mono"><br>
+        RMKeyChain.addFunctionClass(RMAddOns.class);</font></p>
+      <p><font size="5"><strong>Custom Aggregate Functions </strong></font></p>
+      <p>Developers can also add new aggregate methods to ReportMill simply by
+        implementing a method that accepts a java.util.List arg and an RMKeyChain
+        arg. Here's an example method that would let you use a key like &quot;@myTotal.getRevenue@&quot;: </p>
+      <p><font color="#FF0000" size="2" face="Courier New, Courier, mono">&nbsp;&nbsp;//
+          This method returns a total for a List and a KeyChain </font><font size="2" face="Courier New, Courier, mono"><br>
+&nbsp;&nbsp;public static Object myTotal(List aList, RMKeyChain aKeyChain)<br>
+&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;float total = 0;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for(int i=0; i&lt;aList.size(); i++)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total += RMKeyChain.floatValueForKeyChain(aList.get(i),
+aKeyChain);<br> 
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return new Float(total);<br>
+&nbsp;&nbsp;}</font></p>
+      <p>The RMKeyChain class is ReportMill's internal representation of arbitrary expressions, and the floatValueForKeyChain() method is used to evaluate the expression relative to a particular object. <br>
+        The routine above, therefore, will work for &quot;@myTotal.getRevenue@&quot; as well as a more complex expression such as &quot;@myTotal(getRevenueKind==&quot;taxable&quot; ? getRevenue/1.0825 : getRevenue)@&quot;.</p>
+      <p><font size="5"><strong>Example 1 - Custom Formatting</strong></font></p>
+      <p>One of the most common reasons to add a custom function to ReportMill
+        is to provide some format that isn't supported natively by ReportMill.
+        Here is an example of adding two methods to format a number or a date
+        using the standard Java formatter classes DecimalFormat and DateForamt.
+        These could then be invoked using the keys &quot;@moneyFormat(getRevenue)@&quot;
+      and &quot;@dateFormat(getShowDate)@&quot;. </p>
+      <p><font color="#FF0000" size="2" face="Courier New, Courier, mono">//
+          Create a class with one or more static methods that accept Object args </font><font size="2" face="Courier New, Courier, mono"><br>
+public static class RMAddOns {<br>
+<br>
+        </font><font color="#FF0000" size="2" face="Courier New, Courier, mono">&nbsp;&nbsp;//
+        This method accepts a single Object arg and returns a money formatted
+        string </font><font size="2" face="Courier New, Courier, mono"><br>
+&nbsp;&nbsp;public static Object moneyFormat(Object anObj)<br>
+&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;double value = anObj instanceof Number? ((Number)anObj).doubleValue()
+: 0;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return new DecimalFormat(&quot;$ #,##0.00&quot;).format(value);<br>
+&nbsp;&nbsp;}<br>
+        </font><font color="#FF0000" size="2" face="Courier New, Courier, mono"><br>
+        &nbsp;&nbsp;//
+        This method accepts a single Object arg and returns a date formatted
+        string </font><font size="2" face="Courier New, Courier, mono"><br>
+&nbsp;&nbsp;public static Object dateFormat(Object anObj)<br>
+&nbsp; {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Date value = anObj instanceof Date? (Date)anObj
+: null;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;return DateFormat.getDateInstance().format(value);<br>
+&nbsp;&nbsp;}<br><br>
+      }</font></p>
+      <p><font size="5"><strong>Designer Integration</strong></font></p>
+      <p>There currently isn't a great story for designer integration, such as
+        a &quot;Load External Custom Function Jars&quot; panel, so often it won't be worth
+        the effort to get such functions to show up just for the sake of preview.
+        However, one possible solution would be to add a main() method to your
+        custom function class that calls registerFunctionClass(), then calls
+        com.reportmill.App.main(args). Then if you manually launched the designer
+        using the RMStudio.jar and your function class main, the function would
+        operate in the context of the designer.</p>
+      <blockquote>
+        <p><font size="2" face="Courier New, Courier, monospace">prompt&gt; java -cp RMStudio10.jar:. com.mycompany.RMExtraFunctions</font></p>
+      </blockquote>
+      <p>The downside to launching the application manually like this is that
+        you lose the auto-update feature that webstart provides. A solution to
+        this might be to put your custom functions class in a jar in your Java
+        library extensions directory, then launch the app using a modified version
+        of the RMStudio jnlp file.</p>
+      <p><font size="2" face="Courier New, Courier, mono"><br>
+      </font></p></TD>
+  </TR>
+</TABLE>
+</BODY>
+
+
+<!-- Mirrored from www.reportmill.com/support/CustomFunctions.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:23 GMT -->
+</HTML>
+
+
+

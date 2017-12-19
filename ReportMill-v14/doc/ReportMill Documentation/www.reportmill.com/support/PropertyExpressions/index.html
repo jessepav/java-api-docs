@@ -1,0 +1,108 @@
+<HTML>
+
+<!-- Mirrored from www.reportmill.com/support/PropertyExpressions/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:19 GMT -->
+<HEAD>
+<TITLE>ReportMill - Property Expressions</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#CB0017" ALINK="#AA0000" VLINK="#808080">
+
+<script src="../../../reportmill.com/shared/navbar.js" ></script>
+
+<p><FONT SIZE=2 FACE="Arial, Helvetica, sans-serif" COLOR=#CB0017><A HREF="http://www.reportmill.com/">HOME</A> 
+  &gt; <a href="../index-2.html">SUPPORT</a> &gt; PROPERTY EXPRESSIONS </FONT><BR>
+  <BR>
+  <strong><font size="5" face="Georgia, Times, Times New Roman">Property Expressions </font></strong></p>
+<blockquote>
+  <p><font size="3" face="Georgia, Times, Times New Roman">
+    <a href="#DataDriven">Data Driven Graphics Attributes</a> <br>
+    <a href="#Colors">Colors</a><br>
+    <a href="#Fonts">Fonts</a><br>
+    <a href="#URL">URL</a><br>
+    <a href="#IsVisible">IsVisible</a><br>
+    <a href="#Placement">Placement</a></font></p>
+</blockquote>
+<br>
+<TABLE WIDTH=640 height="734" BORDER=0 CELLPADDING=0 CELLSPACING=0>
+  <TR VALIGN=TOP> 
+    <TD WIDTH=4 height="734">&nbsp;</TD>
+    <TD width="636" align="left"><strong><font size="4" face="Georgia, Times New Roman, Times, serif">Data
+          Driven Graphics Attributes <a name="DataDriven" id="DataDriven"></a></font></strong>
+	  <p><font size="3" face="Georgia, Times New Roman, Times, serif"><img src="PropExpr1.jpg" width="227" height="354" align="right">
+        For any
+        text, box, or line  (or anything really) on a page, ReportMill lets
+        you easily configure  visual attributes, like color, text-color,
+        font, stroke, size, location, etc. In fact, ReportMill lets you set
+        more graphics design attributes than any other reporting package.</font></p>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">One of
+        the most exciting advanced reporting features that ReportMill introduces
+           is the unique ability to set most
+          of these attributes dynamically based on conditions in the report dataset.
+          This feature is accessed by selecting any individual shape in conjunction
+          with the Shape General inspector.</font></p>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">In the example to the right, we have configured a given shape to have
+        a red background if the value of getAmount is greater than 100.</font></p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
+      <strong><font size="4" face="Georgia, Times New Roman, Times, serif">Colors<a name="Colors" id="Colors"></a> </font></strong>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">Included
+          in the list of attributes are the following color attributes:</font></p>
+      <ul>
+        <li><font size="3" face="Georgia, Times New Roman, Times, serif">FillColor
+            - the background color of the selected box, text, etc.</font></li>
+        <li><font size="3" face="Georgia, Times New Roman, Times, serif">StrokeColor
+            - the color of the border of the selected shape.</font></li>
+        <li><font size="3" face="Georgia, Times New Roman, Times, serif">FontColor
+            - the color of the text in the selected shape.</font></li>
+      </ul>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">The valid
+          values of this attribute are any statically defined color name in Java.awt.Color
+          presented as a string literal (case-insensitive), like &quot;red&quot;, &quot;green&quot;,
+          &quot;blue&quot;, &quot;lightgray&quot;, etc. Additionally, colors
+          may be provided in HTML hexadecimal style: &quot;#FFA8C2&quot;. Hint:
+          use the ReportMill color panel RGB
+          sliders pane to get an exact HTML color string. </font></p>
+      <p><strong><font size="4" face="Georgia, Times New Roman, Times, serif">Fonts<a name="Fonts" id="Fonts"></a></font></strong></p>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">Also included
+          is the &quot;Font&quot; attribute. Valid values for this include the
+          simple case-insensitive string literal descriptors &quot;bold&quot; and &quot;italic&quot;.
+          You can also describe a font in terms of its name and size, like &quot;Arial
+          Bold 12&quot; or &quot;Courier Italic 14&quot;. </font></p>
+      <p><strong><font size="4" face="Georgia, Times New Roman, Times, serif">URL<a name="URL" id="URL"></a></font></strong></p>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">A powerful
+          facility, used for things like DrillDown functionality, is the URL
+          property. This can simply be a static string, like: http://abc.com.
+          Or it can contain keys like:</font></p>
+      <blockquote>
+        <p><font size="3" face="Georgia, Times New Roman, Times, serif">http://abc.com/GetReport.jsp?type=&quot;Customer&quot;:id=@getCustomerId@</font></p>
+      </blockquote>
+      <p><strong><font size="4" face="Georgia, Times New Roman, Times, serif">IsVisible<a name="IsVisible" id="IsVisible"></a></font></strong></p>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">Sometimes
+          its handy to have an element that isn't even visible if a given condition
+          is met. For instance, a text field with &quot;Number of Children: @getChildrenCount@&quot;
+          might have the following property expression:</font></p>
+      <blockquote>
+        <p><font size="3" face="Georgia, Times New Roman, Times, serif">IsVisible&nbsp;&nbsp;&nbsp;&nbsp;getChildrenCount&gt;0</font></p>
+      </blockquote>
+      <p><strong><font size="4" face="Georgia, Times New Roman, Times, serif">Placement<a name="Placement" id="Placement"></a></font></strong></p>
+	  <img src="PropExpr2.jpg" width="311" height="174" align="right">
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">Another
+          fun one is playing with the placement of a shape. In particular, you
+          can build an impromptu bar chart in a table by setting its width dynamically
+          to a ratio (times a default width). For instance, a group of movies
+          might show their relative revenues with a key like this:</font></p>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">getRevenue/Up.max.getRevenue*200</font></p>
+      <p>&nbsp;</p>
+      <p></p>
+      <p></p>
+    <p></p></TD>
+  </TR>
+</TABLE>
+</BODY>
+
+
+<!-- Mirrored from www.reportmill.com/support/PropertyExpressions/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:20 GMT -->
+</HTML>
+
+
+

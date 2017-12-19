@@ -1,0 +1,99 @@
+<HTML>
+
+<!-- Mirrored from www.reportmill.com/support/Localization.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:24 GMT -->
+<HEAD>
+<TITLE>ReportMill - Localization</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#CB0017" ALINK="#AA0000" VLINK="#808080">
+
+<script src="../../reportmill.com/shared/navbar.js" ></script>
+
+<p><FONT SIZE=2 FACE="Arial, Helvetica, sans-serif" COLOR=#CB0017><A HREF="http://www.reportmill.com/">HOME</A> 
+  &gt; <a href="http://www.reportmill.com/">SUPPORT</a> &gt; LOCALIZATION </FONT><BR>
+  <BR>
+<FONT FACE="Georgia, Times, Times New Roman" SIZE=5><strong>Localization</strong></FONT></p>
+<blockquote>
+  <p><font size="3" face="Georgia, Times, Times New Roman">
+    <a href="#1">Overview</a><br>
+    <a href="#2">Multi-template Approach</a><br>
+  <a href="#3">Language String Substitution Approach</a></font></p>
+</blockquote>
+<br>
+<TABLE WIDTH=640 height="734" BORDER=0 CELLPADDING=0 CELLSPACING=0>
+  <TR VALIGN=TOP> 
+    <TD WIDTH=4 height="734">&nbsp;</TD>
+    <TD width="636" align="left"><strong><font size="4" face="Georgia, Times New Roman, Times, serif">Overview<a name="1" id="1"></a></font></strong>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">There are
+          several possible solutions for generating reports in different languages. Below,
+          we discuss (1) creating a separate template for each additional supported
+          language and (2) using language keys in place of static text for labels
+          in a template. </font></p>
+
+      <strong><font size="4" face="Georgia, Times New Roman, Times, serif">Multi-template
+      Approach <a name="2" id="2"></a> </font></strong>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">Perhaps
+          the most straight-forward approach is to design the master set of templates
+          in the  predominant language, then duplicate  the
+          set of templates for each additional language that the application
+          needs to support. Then templates can be loaded from their language
+          package as simply as loading the original template: </font></p>
+      <blockquote>
+        <p><font size="2" face="Courier New, Courier, mono">// Construct template
+            resource path <br>
+            String path = getTemplateName() + &quot;_&quot; + getLanguage() + &quot;.rpt&quot;;<br>
+            <br>
+            // Load template from res path, eg.: &quot;/wherever/Sales_French.rpt&quot; <br>
+        RMDocument template = new RMDocument(path);</font></p>
+        <p><font size="2" face="Courier New, Courier, mono">// Generate report
+            normally ...<br>
+        RMDocument report = template.generateReport(dataset); </font> </p>
+      </blockquote>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">This
+        approach has several advantages. First, the task of localization can
+          easily be separated from the development chain, so  language
+          support can be added or modified without having to rebuild the main
+          application. Second, the process of translation can be done by non-developers
+          simply by translating the static template text using the RMStudio page
+          layout application. Third, it is possible to perform more flexible
+          translation, like increasing the size of columns or fields,  and re-ordering
+          or adding/removing fields. </font></p>
+      <p><strong><font size="4" face="Georgia, Times New Roman, Times, serif">Language
+      String Substitution <a name="3" id="3"></a></font></strong></p>
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">Another
+          possible approach is to replace static text found in the template with
+          simple language keys. So instead of using the static text &quot;Regional
+          Sales Report&quot;,
+          the template author would instead type the string &quot;@ReportTitleLabel@&quot;.
+          Then when the template is used to generate a report, an additional
+          Map can be used to provide the language specific string for that label.</font>  </p>
+      <blockquote>
+        <p><font size="2" face="Courier New, Courier, mono">// Load template
+            from  path <br>
+        RMDocument template = new RMDocument(&quot;/Templates/Sales.rpt&quot;);</font></p>
+        <p><font size="2" face="Courier New, Courier, mono">// Create language
+            map<br>
+        Map languageMap = new HashMap();<br>
+        languageMap.put(&quot;ReportTitleLabel&quot;, &quot;Regional Sales Report&quot;);<br>
+        languageMap.put(&quot;DateLabel&quot;, &quot;Date&quot;);<br>
+        <br>
+        // Generate report with dataset and language map (as &quot;user info&quot;)<br>
+        RMDocument report = template.generateReport(dataset, languageMap);
+</font></p>
+      </blockquote>
+
+      <p><font size="3" face="Georgia, Times New Roman, Times, serif">This approach
+          is particularly handy if your application already has support for
+          mapping language strings. </font>  </p>
+	  
+    </TD>
+  </TR>
+</TABLE>
+</BODY>
+
+
+<!-- Mirrored from www.reportmill.com/support/Localization.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:24 GMT -->
+</HTML>
+
+
+

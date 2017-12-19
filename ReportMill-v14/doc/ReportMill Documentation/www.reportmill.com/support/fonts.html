@@ -1,0 +1,123 @@
+<HTML>
+
+<!-- Mirrored from www.reportmill.com/support/fonts.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:23 GMT -->
+<HEAD>
+<TITLE>ReportMill - Fonts</TITLE>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#CB0017" ALINK="#AA0000" VLINK="#808080">
+
+<script src="../../reportmill.com/shared/navbar.js" ></script>
+
+<p><FONT SIZE=1 FACE="Verdana, Helvetica, Arial" COLOR=#CB0017><A HREF="http://www.reportmill.com/">HOME</A> 
+  &gt; <a href="http://www.reportmill.com/">SUPPORT</a> &gt; FONTS</FONT><BR>
+  <BR>
+<FONT FACE="Georgia, Times, Times New Roman" SIZE=5>Fonts</FONT></p>
+<TABLE WIDTH=629 height="1388" BORDER=0 CELLPADDING=0 CELLSPACING=0>
+  <TR VALIGN=TOP> 
+    <TD WIDTH=4 height="1388">&nbsp;</TD>
+    <TD width="625" align="left"><p><strong>Overview</strong></p>
+      <p>The ReportMill design application allows you to select from all available
+        system fonts (or at least those available to the Java Runtime).
+        The most important aspect of ReportMill and fonts is that you generally
+        want to ensure that the exact same fonts chosen for your templates (on
+        your design machine) are available on your deployment server. This can
+        sometimes be problematic, because different platforms ship with different
+        sets of base fonts. </p>
+      <p><strong>Fonts available to the Java Runtime </strong></p>
+      <p>ReportMill uses the Java.awt.Font object for
+         font information. You can check what fonts are available in your deployment
+        runtime with the following code:</p>
+      <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prompt&gt; java -cp
+        ReportMill10.jar com.reportmill.Shell -fonts</p>
+      <p>This corresponds to the following Java code GraphicsEnvironment.getAllFonts().
+        If any font used in your template does not show up in this list on your
+        server, ReportMill will perform font substitution and your reports will
+      likely look somewhat different on the server.</p>
+      <p><strong>Font Substitution Warning</strong></p>
+      <p>If a font referenced in your template is not available at runtime on
+        the server, ReportMill will print a warning to System.err in the following
+        format:</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;RMFont: Couldn't find font for Arial (using
+        Garamond)</p>
+      <p>If your reports look like they are using the wrong font, look for this
+        message in the console to see if your system is missing a particular
+        font. </p>
+      <p><strong>PDF Base fonts (Arial, Courier, Times, Helvetica) </strong></p>
+      <p>When generating PDF, there is a base set of fonts that are particularly
+        efficient and consistent. Adobe's PDF spec guarantees that the fonts
+        listed above are available to all PDF viewers, so ReportMill can reference
+        these fonts without having to embed the outlines of the fonts in the
+        PDF, which results in smaller PDF files. However, if used, these fonts
+        do still need to be present on the server.</p>
+      <p><strong></strong><strong>Windows</strong></p>
+      <p>Windows users shouldn't have any problem since a large number of TrueType
+        fonts ship with Windows in the C:/Windows/Fonts directory and Java seems
+        to use any font located in that directory. </p>
+      <p><strong>Mac OS X</strong></p>
+      <p>The Mac can be a little trickier for a couple reasons. First, it seems
+        that the Java Runtime finds all system fonts when someone is logged into
+        the console (in /Library/Fonts, ~/Library/Fonts and /System/Library/Fonts).
+        However, if a server application is later launched when the user console
+        isn't active, Java tends to only find fonts in $JAVA_HOME/lib/fonts (where
+        JAVA_HOME is /System/Library/Frameworks/JavaVM.framework/Home).
+        So the most reliable approach to using Mac OS X as a server deployment
+        machine is to copy fonts used in the template there.</p>
+      <p>However, the second problem is that many fonts on the Mac are not packaged
+        as straight TrueType (.ttf) files, but are instead packaged as Font Suitcases,
+        whereby several individual font files from the same family are archived
+        into one file, either in the resource fork of a Mac OS file (these usually
+        have no extension) or the data fork (these files usually end in .dfont).
+        Java cannot read these files directly (again, when there is no user logged
+        into the console).</p>
+      <p>The answer may be to get the .ttf files from another source or to use
+        a utility to extract them from the non-standard Mac OS X packaging. In
+        the past we've been able to extract 
+        &quot;.ttf&quot; files from &quot;.dfont&quot; files with the Fondu utility
+        (<a href="http://sourceforge.net/projects/fondu">http://sourceforge.net/projects/fondu</a>).</p>
+      <p><strong>Solaris, Linux, others</strong></p>
+      <p>If you are deploying on Solaris, Linux or any other server environment, 
+        you may be surprised at how few fonts are provided with the standard distribution. 
+        Copy any fonts that you have used in your templates to the <strong>jre/lib/fonts</strong> 
+        directory in your JRE distribution (this should be something like /usr/local/java/jre/lib/fonts).</p>
+      <p>Also, please refer to platform specific documentation on fonts for both
+        the platform and the JRE for that platform. </p>
+      <p><strong>Linux</strong></p>
+      <p>Recently we've heard that certain Linux distributions may have additional 
+        steps to make additional fonts available to the JRE. Check the documentation 
+        for your Linux release, but here are some notes from one of our developers:</p>
+      <p>1) Copy the fonts to a font directory in /usr/share/fonts<br>
+        2) CD to that dir and execute:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; prompt&gt; fonts.dir<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prompt&gt; /usr/sbin/chkfontpath 
+        --add /usr/share/fonts/&lt;your_font_dir&gt;<br>
+        4) Restart the font server by executing prompt&gt; /etc/rc.d/init.d/xfs 
+        restart<br>
+        5) open the fonts.dir file and copy the lines that have been added for 
+        your new fonts (An example would be: MyFont.ttf -macromedia-Secure1-medium-r-normal--0-0-0-0-p-0-iso10646-1) 
+        to the end of the font.properties file under java/jre/lib</p>
+      <p><strong>Legacy (Java 1.3)</strong></p>
+      <p>For Java 1.3, ReportMill will fall back on it's native
+          TrueType font parsing
+          technology. Under these conditions, it will be necessary to copy the
+          fonts to a standard location in the file system so ReportMill can find
+          them:</p>
+      <ul>
+        <li>C:/Winnt/Fonts (Windows only)</li>
+        <li>~/ReportMill/Fonts ('~' is the deployment account's home directory)</li>
+        <li>~/Library/Fonts</li>
+        <li>~/Library/ReportMill/Fonts</li>
+      </ul>      
+      <p>If ReportMill fails to find the font file, it will print a warning to 
+        the console. This warning also contains a full list of the locations that 
+        ReportMill looked for font files. Use this to verify the location of the 
+        deployment account's home directory ('~'). Additionally, the native ReportMill 
+        TrueType font parsing is not as complete as the AWT font parsing and may 
+        fail to load some incorrectly coded TrueType fonts (font designers often 
+        take liberties with the spec, which makes it hard to offer complete support 
+        of all fonts).</p>
+    </TD>
+  </TR>
+</TABLE>
+</BODY>
+
+<!-- Mirrored from www.reportmill.com/support/fonts.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:23 GMT -->
+</HTML>

@@ -1,0 +1,29 @@
+HTTrack3.49-2+htsswf+htsjava launched on Wed, 06 Dec 2017 19:22:16 at http://www.reportmill.com/support/DesDocs.html http://www.reportmill.com/support/DevDocs.html +http://www.reportmill.com/support/* +http://reportmill.com/support/* +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar +*.jar
+(winhttrack -qir6C2%Ps2u1%s%uN0%I0p3DaK0c2H0%kf2A100000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" http://www.reportmill.com/support/DesDocs.html http://www.reportmill.com/support/DevDocs.html +http://www.reportmill.com/support/* +http://reportmill.com/support/* -O1 "c:\Users\JP\Downloads\Java\ReportMill\doc\ReportMill Documentation" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar +*.jar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+19:22:18	Warning: 	Moved Permanently for www.reportmill.com/support/Resizing
+19:22:18	Warning: 	File has moved from www.reportmill.com/support/Resizing to http://www.reportmill.com/support/Resizing/
+19:22:18	Error: 	Unable to save file c:/Users/JP/Downloads/Java/ReportMill/doc/ReportMill Documentation/www.reportmill.com/support/Resizing: Permission denied
+19:22:19	Warning: 	Moved Permanently for www.reportmill.com/support/PropertyExpressions
+19:22:19	Warning: 	File has moved from www.reportmill.com/support/PropertyExpressions to http://www.reportmill.com/support/PropertyExpressions/
+19:22:19	Error: 	Unable to save file c:/Users/JP/Downloads/Java/ReportMill/doc/ReportMill Documentation/www.reportmill.com/support/PropertyExpressions: Permission denied
+19:22:21	Error: 	"Not Found" (404) at link reportmill.com/support/rm9 (from www.reportmill.com/support/DevDocs.html)
+19:22:23	Warning: 	Moved Permanently for www.reportmill.com/support/imagesubstitution
+19:22:23	Warning: 	File has moved from www.reportmill.com/support/imagesubstitution to http://www.reportmill.com/support/imagesubstitution/
+19:22:23	Error: 	Unable to save file c:/Users/JP/Downloads/Java/ReportMill/doc/ReportMill Documentation/www.reportmill.com/support/imagesubstitution: Permission denied
+19:22:25	Warning: 	Moved Permanently for reportmill.com/support/swing-view
+19:22:25	Warning: 	File has moved from reportmill.com/support/swing-view to http://reportmill.com/support/swing-view/
+19:22:25	Error: 	Unable to save file c:/Users/JP/Downloads/Java/ReportMill/doc/ReportMill Documentation/reportmill.com/support/swing-view: Permission denied
+19:22:25	Warning: 	Moved Permanently for reportmill.com/support/cases
+19:22:25	Warning: 	File has moved from reportmill.com/support/cases to http://reportmill.com/support/cases/
+19:22:25	Error: 	Unable to save file c:/Users/JP/Downloads/Java/ReportMill/doc/ReportMill Documentation/reportmill.com/support/cases: Permission denied
+19:22:27	Error: 	"Not Found" (404) at link reportmill.com/support/rm8/javadoc (from reportmill.com/support/TemplateManipulation.html)
+19:22:27	Error: 	"Not Found" (404) at link www.reportmill.com/jars/poi30-rm.jar (from reportmill.com/support/Excel.html)
+
+HTTrack Website Copier/3.49-2 mirror complete in 14 seconds : 72 links scanned, 62 files written (5028114 bytes overall), 27 files updated [483784 bytes received at 34556 bytes/sec], 4.0 requests per connection
+(8 errors, 10 warnings, 0 messages)

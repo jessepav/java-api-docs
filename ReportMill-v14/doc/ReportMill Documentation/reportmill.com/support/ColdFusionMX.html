@@ -1,0 +1,110 @@
+<HTML>
+
+<!-- Mirrored from reportmill.com/support/ColdFusionMX.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:25 GMT -->
+<HEAD>
+<TITLE>ReportMill - ColdFusion MX</TITLE>
+<META NAME="keywords" CONTENT="ReportMill, Report, Mill, Object Reporting System, Dynamic PDF, Reports, Reporting, WebObjects, Crystal Reports, WYSIWYG, Rhapsody, Business Intelligence, Mac OS X"> 
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#CB0017" ALINK="#AA0000" VLINK="#808080">
+
+<script src="../shared/navbar.js" ></script>
+
+<p><FONT SIZE=1 FACE="Verdana, Helvetica, Arial" COLOR=#CB0017><A HREF="http://www.reportmill.com/">HOME</A> 
+  &gt; <a href="http://reportmill.com/">SUPPORT</a> &gt; COLDFUSION MX </FONT><BR>
+  <BR>
+  <FONT FACE="Georgia, Times, Times New Roman" SIZE=5>Cold Fusion MX</FONT></p>
+<TABLE WIDTH=650 height="1310" BORDER=0 CELLPADDING=0 CELLSPACING=0>
+  <TR VALIGN=TOP> 
+    <TD WIDTH=1 height="1310">&nbsp;</TD>
+    <TD align="left"> <p><FONT FACE="Verdana, Helvetica, Arial" SIZE=1 COLOR=#CB0017><B> 
+        </B></FONT><font size="3"><b>Overview</b></font><font size="2">&nbsp;</font> 
+      </p>
+      <p>ReportMill makes it easy to generate PDF and Flash reports from ColdFusion 
+        MX applications, using ColdFusion's powerful Java integration features. 
+        Most ColdFusion developers are familiar with the RecordSet object, retrieved 
+        using the cfquery tag:</p>
+      <pre><font size="2" face="Courier New, Courier, mono">&lt;cfquery name=&quot;myRecordSet&quot; datasource=&quot;myDataSource&quot;&gt;
+   SELECT * FROM CUSTOMER
+&lt;/cfquery&gt;</font></pre>
+      <p>Here's how easy it is to use ReportMill's API to turn a RecordSet into 
+        a PDF report:</p>
+      <pre><font size="2" face="Courier New, Courier, mono">&lt;cfscript&gt;
+    template = CreateObject(&quot;Java&quot;, &quot;com.reportmill.base.RMDocument&quot;);
+    template.init(&quot;c:\MyTemplates\Template.rpt&quot;);
+    report = template.generateReport(myRecordSet);
+    report.writePDF(ExpandPath(&quot;MyReport.pdf&quot;));
+&lt;/cfscript&gt;</font></pre>
+      <p>See the Basic API document on the Support page for a complete list of 
+        ReportMill's primary API.</p>
+      <p><font size="3"><strong>Adding ReportMill.jar to ColdFusion's ClassPath</strong></font></p>
+      <p>The first step to use ReportMill with ColdFusion is to add ReportMill.jar 
+        to ColdFusion's classpath. Here are the steps:</p>
+      <ul>
+        <li>Run ColdFusion Administrator</li>
+        <li>Select &quot;Server Settings -&gt; Java and JVM&quot;</li>
+        <li>Add the complete path to your copy of ReportMill.jar (eg, &quot;C:\MyJars\ReportMill.jar&quot;)</li>
+        <li>Restart the ColdFusion Administrator Service (under the Windows Start 
+          button: Programs-&gt;Admin Tools-&gt;Services)</li>
+      </ul>
+      <p><strong><font size="3">Designing a ReportMill Template</font></strong></p>
+      <p>The key to designing a ReportMill template is to get an XML file describing 
+        the data you will provide to ReportMill. ReportMill provides API to get 
+        this from any RecordSet (or any object for that matter). You only need 
+        to run this once (unless you change the columns in the RecordSet or database):</p>
+      <pre><font size="2" face="Courier New, Courier, mono">&lt;cfscript&gt;
+    xmlWriter = CreateObject(&quot;Java&quot;, &quot;com.reportmill.base.RMXMLWriter&quot;);
+    xmlWriter.init();
+    xmlWriter.writeObject(myRecordSet, &quot;C:\Temp\MyRecordSet.xml&quot;);
+&lt;/cfscript&gt;</font></pre>
+      <p>Once you have an XML file drag it into an empty document in the ReportMill 
+        editor. This will bind the XML to the document and present the user with 
+        the &quot;Keys Browser&quot;. Simply drag and drop keys onto the template 
+        to begin (drag the &quot;objects&quot; to-many key on the template to 
+        create a table for repetitions).</p>
+      <p>It's important to note that you only need to generate XML once (for
+        the purpose of template design), then you can delete this code. The &quot;generateReport(myResultSet)&quot;
+        method runs directly from a ColdFusion ResultSet, and is about an order
+        of magnitude more efficient than generating a report from XML.</p>
+      <p><font size="3"><strong>Returning the Report to the Client Browser</strong></font></p>
+      <p>Once you have generated a PDF or Flash document using writePDF() or writeFlash(), 
+        you can easily reference it using standard HTML (perhaps right under the 
+        cfscript tag used to generate the document):</p>
+      <p><font size="2" face="Courier New, Courier, mono">&lt;cfoutput&gt;&lt;br&gt;&lt;a 
+        href=&quot;MyReport.pdf&quot;&gt;Here's the PDF!&lt;/a&gt;&lt;/cfoutput&gt;</font></p>
+      <p>or</p>
+      <pre><font size="2" face="Courier New, Courier, mono">&lt;object classid=&quot;clsid:D27CDB6E-AE6D-11cf-96B8-444553540000&quot;<br>    codebase=&quot;http://download.macromedia.com/pub/shockwave/<br>    cabs/flash/swflash.cab#version=6,0,29,0&quot;         <br>    width=&quot;#report.width#&quot; height=&quot;#report.height#&quot;&gt;
+    &lt;param name=&quot;report&quot; value=&quot;MyReport.swf&quot;&gt;
+    &lt;param name=quality value=high&gt;
+    &lt;embed src=&quot;MyReport.swf&quot; quality=high<br>      pluginspage=&quot;http://www.macromedia.com/shockwave/<br>      download/index.cgi?P1_Prod_Version=ShockwaveFlash&quot;<br>      type=&quot;application/x-shockwave-flash&quot;<br>      width=&quot;#report.width#&quot; height=&quot;#report.height#&quot;&gt;<br>    &lt;/embed&gt;          
+&lt;/object&gt;</font></pre>
+      <p><strong>Returning  Reports as a Dynamic Response</strong></p>
+      <p>It's often interesting to return a dynamically generated page as an
+        HTTP  response, so that the file doesn't actually exist in the doc root.
+         
+        This is simply a matter of providing the bytes instead of writing the
+        file and changing the RESPONSE type to &quot;application/pdf&quot;.</p>
+      <p><font size="2" face="Courier New, Courier, mono">&lt;cffile action=&quot;write&quot; file=&quot;tempfis.pdf&quot; output=&quot;#report.pdfBytes()#&quot;&gt;<br>
+&lt;cfcontent type=&quot;application/pdf&quot; file=&quot;tempfis.pdf&quot; deleteFile=&quot;Yes&quot;&gt;</font></p>
+      <p><strong>Cold Fusion JVM Configuration</strong></p>
+      <p>When running ReportMill with ColdFusion on JVM 1.4, it is necessary to 
+        set the JVM to run &quot;headless&quot;. <a href="http://www.macromedia.com/support/coldfusion/ts/documents/graphics_unix_141jvm.htm">See 
+        this Macromedia technote on the subject</a>.</p>
+      <p><strong>Troubleshooting</strong></p>
+      <p>Other than the technote above, we've found using ReportMill with ColdFusion 
+        is not very different than using it with Java. However, when basic problems 
+        with page generation do occur, a good place to look is the ColdFusion 
+        error log: C:\CFusionMX\runtime\logs\default-err.log.</p>
+      <p><strong>Additional Info</strong></p>
+      <p>We're pretty new to ColdFusion - be sure and let us know if you can help 
+        us improve this document (<a href="mailto:support@reportmill.com">support@reportmill.com</a>).</p></TD>
+  </TR>
+</TABLE>
+</BODY>
+
+
+<!-- Mirrored from reportmill.com/support/ColdFusionMX.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:25 GMT -->
+</HTML>
+
+
+

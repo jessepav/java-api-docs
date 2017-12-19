@@ -1,0 +1,117 @@
+<HTML>
+
+
+
+
+<!-- Mirrored from reportmill.com/support/WebLogic.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:25 GMT -->
+<HEAD>
+
+
+
+  <TITLE>ReportMill - WebLogic</TITLE>
+
+
+
+
+
+<META NAME="description" CONTENT="ReportMill, object reporting for WebObjects.  Add the power of dynamic reporting to your web and database applications."> 
+
+
+
+<META NAME="keywords" CONTENT="ReportMill, Report, Mill, Object Reporting System, Dynamic PDF, Reports, Reporting, WebObjects, Crystal Reports, WYSIWYG, Rhapsody, Business Intelligence, Mac OS X, OpenStep, NextStep"> 
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+
+
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#CB0017" ALINK="#AA0000" VLINK="#808080">
+<FONT SIZE="1" FACE="Verdana, Helvetica, Arial"> 
+<MAP NAME="menu">
+
+<AREA SHAPE=RECT COORDS="274,7,385,34" HREF="http://reportmill.com/siteIndex.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="386,7,507,33" HREF="http://reportmill.com/info.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="507,8,637,36" HREF="http://www.reportmill.com/"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="507,35,636,61" HREF="http://reportmill.com/company/index.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="6,35,145,62" HREF="http://reportmill.com/product/index.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="145,35,268,62" HREF="http://reportmill.com/news/index.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="396,34,507,61" HREF="http://reportmill.com/index.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="269,34,394,62" HREF="http://reportmill.com/customers/index.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+</MAP>
+<TABLE WIDTH="640"  BORDER="0" CELLSPACING="0" CELLPADDING="0">
+
+<TR>
+
+  <TD WIDTH="640">
+
+  <CENTER>
+
+  <IMG SRC="../../www.reportmill.com/images/menu.gif" USEMAP="#menu"  HEIGHT="64" WIDTH="640" ALT="Menu" BORDER="0"></center></TD>
+
+</TR>
+
+</TABLE>
+
+
+
+
+
+</FONT>
+<p><FONT SIZE=1 FACE="Verdana, Helvetica, Arial" COLOR=#CB0017><A HREF="http://www.reportmill.com/">HOME</A> 
+  &gt; <a href="http://reportmill.com/">SUPPORT</a> &gt; WEBLOGIC</FONT><BR>
+  <BR>
+  <FONT FACE="Georgia, Times, Times New Roman" SIZE=5>WebLogic Notes</FONT></p>
+<TABLE WIDTH=650 height="648" BORDER=0 CELLPADDING=0 CELLSPACING=0>
+  <TR VALIGN=TOP> 
+    <TD WIDTH=1 height="648">&nbsp;</TD>
+    <TD align="left"> <p><strong><font size="4">Introduction</font></strong></p>
+      <p>Below are some notes provided by customers on using ReportMill with WebLogic.</p>
+      <p><strong><font size="4">WebLogic Policy</font></strong></p>
+      <p>1) In weblogic.policy, add the following line to where ReportMill.jar 
+        is located:<br>
+        &nbsp;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; permission java.io.FilePermission 
+        &quot;${/}REPORT_MILL_JAR_LOCATION${/}-&quot;,<br>
+        &quot;read,write,delete,execute&quot;;</p>
+      <p>Or for quick, hassle-free development setup (although not recommended 
+        for production), add the following line to the &quot;grant {&quot; section:<br>
+        &nbsp;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; permission java.security.AllPermission;<br>
+        2) Modify the startup script for Weblogic 5.1 to add the following:<br>
+        -Xbootclasspath/a:$MY_3RD_PARTY_LIB_PATH/pja.jar:$MY_3RD_PARTY_LIB_PATH/<br>
+        rtgraphics.jar:$MY_3RD_PARTY_LIB_PATH/ReportMill.jar <br>
+        -Dawt.toolkit=com.eteks.awt.PJAToolkit<br>
+        -Djava.awt.graphicsenv=com.eteks.java2d.PJAGraphicsEnvironment -Djava.awt.fonts=$JAVA_HOME/jre/lib/fonts 
+        -Djava2d.font.userPlatformFont=false<br>
+        &nbsp;<br>
+        &nbsp;&nbsp;&nbsp; This will setup ReportMill.jar to be part of bootclasspath, 
+        which is necessary for headless document generation.&nbsp; Notice that 
+        the PJA libraries are also setup here.<br>
+        &nbsp;<br>
+        3) Add to $WEBLOGIC_CLASSPATH the ReportMill.jar</p>
+      <p><strong><font size="4">Configuring Responses</font></strong></p>
+      <p>Another customer reported a problem in configuring HTML responses for 
+        HTML reports, documented at BEA's website. The solution was to call resetBuffer 
+        on the response:</p>
+      <p>response.setContentLength(imgBytes.length);<br>
+        <strong>response.resetBuffer();</strong><br>
+        response.getOutputStream().write(imgBytes);<br>
+        response.getOutputStream().close();</p>
+      </TD>
+  </TR>
+</TABLE>
+</BODY>
+
+
+<!-- Mirrored from reportmill.com/support/WebLogic.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:25 GMT -->
+</HTML>
+
+
+

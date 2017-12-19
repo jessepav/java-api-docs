@@ -1,0 +1,147 @@
+<HTML>
+
+
+
+
+<!-- Mirrored from reportmill.com/support/TemplateManipulation.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:24 GMT -->
+<HEAD>
+
+
+
+  <TITLE>ReportMill - Template Manipulation</TITLE>
+
+
+
+
+
+<META NAME="description" CONTENT="ReportMill, object reporting for WebObjects.  Add the power of dynamic reporting to your web and database applications."> 
+
+
+
+<META NAME="keywords" CONTENT="ReportMill, Report, Mill, Object Reporting System, Dynamic PDF, Reports, Reporting, WebObjects, Crystal Reports, WYSIWYG, Rhapsody, Business Intelligence, Mac OS X, OpenStep, NextStep"> 
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+
+
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#CB0017" ALINK="#AA0000" VLINK="#808080">
+
+<script src="../shared/navbar.js" ></script>
+
+<p><FONT SIZE=1 FACE="Verdana, Helvetica, Arial" COLOR=#CB0017><A HREF="http://www.reportmill.com/">HOME</A> 
+  &gt; <a href="http://reportmill.com/">SUPPORT</a> &gt; TEMPLATE MANIPULATION</FONT><BR>
+  <BR>
+<FONT FACE="Georgia, Times, Times New Roman" SIZE=5>Template Manipulation</FONT></p>
+<TABLE WIDTH=751 height="734" BORDER=0 CELLPADDING=0 CELLSPACING=0>
+  <TR VALIGN=TOP> 
+    <TD WIDTH=4 height="734">&nbsp;</TD>
+    <TD width="747" align="left"><p><font size="5"><strong>Overview</strong></font></p>
+      <p>ReportMill's goal is to make report generation a matter of template
+        configuration, not programming, and thus we strive to solve all reporting
+        problems by continually
+        improving the layout application. However, the ReportMill graphics library
+        is the most powerful Java web graphics API available, and it's inevitable
+        that there will  always be interesting things that can be done with this
+        API directly. Even so, we highly recommend avoiding this functionality
+        and sticking with the <a href="http://reportmill.com/rm8/support/BasicApi.pdf">Basic API</a>.</p>
+      <p>The basic idea is that instead of simply loading a template with the
+        RMDocument() constructor and calling generateReport, a developer would
+        either create a template programmatically or modify an existing template.
+        The objects involved are pretty intuitive and correspond to the elements
+        a developer sees in the layout application. There is an RMDocument to
+        represent the template. The RMDocument has a set of RMPage objects, representing
+        the document pages. And each page has a list of children that can be
+        RMText, RMImage and RMTable (among many others). Complex shapes like
+        RMTable have children like RMTableRow. </p>
+      <p>The
+          JavaDoc
+          is available <a href="rm8/javadoc.html">here</a> for
+          hard-core users.</p>
+      <p><font size="5"><strong> Example 1 - Modifying an existing template </strong></font></p>      
+      <p>Here is a basic example that loads a simple template and reconfigures
+        an empty table to contain specific keys, defining specific attributes
+        and relative column sizes. The template for this code is a plain template
+        with a basic table created by simply hitting the &quot;Add Table&quot; button in
+        the layout app.</p>
+      <p><font size="2" face="Courier New, Courier, mono"> <font color="#FF0000">// 
+        Get template and customize a table row</font><br>
+        RMDocument template = new RMDocument(&quot;MyTemplate.rpt&quot;);<br>
+        RMPage page = template.getPage(0);<br>
+        RMTable table = (RMTable)page.getChildWithClass(RMTable.class); // or use 
+        childWithName()<br>
+        RMTableRow row = (RMTableRow)table.getChildWithTitle(&quot;Objects Details&quot;);<br>
+        row.setNumberOfColumns(3);<br>
+        row.getColumn(0).setText(&quot;@title@&quot;);<br>
+        row.getColumn(0).setFont(RMFont.getFont(&quot;Arial Bold&quot;, 12));<br>
+        row.getColumn(0).setTextColor(new RMColor(1,0,0));<br>
+        row.getColumn(1).setText(&quot;@revenue@&quot;);<br>
+        row.getColumn(2).setText(&quot;@category@&quot;);<br>
+        <br>
+        <font color="#FF0000">// Set relative sizes and arrange</font><br>
+        row.getColumn(0).setWidth(2);<br>
+        row.getColumn(1).setWidth(1);<br>
+        row.getColumn(2).setWidth(1);<br>
+        row.arrange();<br>
+        <br>
+        <font color="#FF0000">// Generate Report</font><br>
+        Map map = new RMXMLReader().read(&quot;BundleResource:examples/HollywoodDB.xml&quot;);<br>
+        RMDocument report = template.generateReport(map.get(&quot;Movies&quot;));<br>
+      report.writePDF(&quot;MyReport.pdf&quot;);</font></p>
+      <p><font size="5"><strong>Example 2 - Creating a template dynamically</strong></font></p>
+      <p><font size="2" face="Courier New, Courier, mono"><font color="#FF0000">//
+        Create new 8.5&quot; x 11&quot; template (or 612 x 792 printers points - 1/72 in) </font><br>
+        RMDocument template = new RMDocument(612, 792);<br>
+  RMPage page = template.getPage(0);<br>
+  <br>
+  <font color="#FF0000">// Create table, position and size and add to page </font><br>
+  RMTable table = new RMTable();<br>
+  table.setBounds(36, 36, 540, 720);<br>
+  page.addChild(table);
+  <br>
+  <br>
+  <font color="#FF0000">// Add header row, set number of colums to 3 and configure</font> <br>
+  RMTableRow hrow = table.addHeader(&quot;objects&quot;);<br>
+  hrow.setNumberOfColumns(3);<br>
+  hrow.getColumn(0).setText(&quot;Title&quot;);<br>
+  hrow.getColumn(1).setText(&quot;Show Date&quot;);<br>
+  hrow.getColumn(2).setText(&quot;Revenue&quot;);<br>
+  <br>
+  <font color="#FF0000">// Add details row, set number of columns to 3 and configure</font><br>
+  RMTableRow drow = table.addDetails(&quot;objects&quot;);<br>
+  drow.setNumberOfColumns(3);
+  <br>
+  drow.getColumn(0).setText(&quot;@getTitle@&quot;);<br>
+  drow.getColumn(1).setText(&quot;@getShowDate@&quot;);<br>
+  drow.getColumn(2).setText(&quot;@getRevenue@&quot;);<br>
+  <br>
+  <font color="#FF0000">// Set something to a specific font and size</font><br>
+  RMFont font = RMFont.getFont(&quot;Arial Bold&quot;, 12);<br>
+  hrow.getColumn(0).getXString().addAttribute(font);<br>
+  <br>
+  <font color="#FF0000">// Set something to align right</font><br>
+  drow.getColumn(2).setAlign(RMText.ALIGN_RIGHT);<br>
+  <br>
+  <font color="#FF0000">// Set something to have a formatter</font><br>
+  RMFormat format = new RMNumberFormat(&quot;$ #,##0.00&quot;); <br>
+  drow.getColumn(2).getXString().addAttribute(format);<br>
+  <br>
+  <font color="#FF0000">// Add a light gray Alternate version</font><br>
+  drow.setVersion(&quot;Alternate&quot;);<br>
+  drow.setColor(RMColor.lightGray);<br>
+  <br>
+  <font color="#FF0000">// Throw some movies at new template and write PDF </font><br>
+      Map hollywood = new RMXMLReader().readObject(&quot;BundleResource:examples/HollywoodDB.xml&quot;);<br>
+List movies = (List)hollywood.get(&quot;Movies&quot;);<br>
+template.generateReport(movies).write(&quot;/tmp/Movies.pdf&quot;);<br> 
+  <br>
+  </font></p></TD>
+  </TR>
+</TABLE>
+</BODY>
+
+
+<!-- Mirrored from reportmill.com/support/TemplateManipulation.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:25 GMT -->
+</HTML>
+
+
+

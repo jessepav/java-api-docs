@@ -1,0 +1,78 @@
+<HTML>
+
+<!-- Mirrored from reportmill.com/support/license.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:24 GMT -->
+<HEAD>
+<TITLE>ReportMill - License Installation</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#CB0017" ALINK="#AA0000" VLINK="#808080">
+
+<script src="../shared/navbar.js" ></script>
+
+<p><FONT SIZE=1 FACE="Verdana, Helvetica, Arial" COLOR=#CB0017><A HREF="http://www.reportmill.com/">HOME</A> 
+  &gt; <a href="http://reportmill.com/">SUPPORT</a> &gt; LICENSE INSTALLATION</FONT><BR>
+  <BR>
+  <FONT FACE="Georgia, Times, Times New Roman" SIZE=5>License Installation</FONT></p>
+<TABLE WIDTH=622 height="907" BORDER=0 CELLPADDING=0 CELLSPACING=0>
+  <TR VALIGN=TOP> 
+    <TD WIDTH=1 height="907">&nbsp;</TD>
+    <TD width="621" align="left"><p>The ReportMill evaluation is a fully functional, never-expiring, final
+        version of ReportMill. It simply adds a watermark to generated reports
+        in its unlicensed form. To eliminate the watermark, simply install a
+        valid license key.</p>
+      <p>License keys need to be installed for the user account that executes
+        the deployed application. This is frequently different than the developer
+        account
+    and may be one of the common administrator accounts (&quot;administrator&quot;, &quot;root&quot;,
+      &quot;nobody&quot;). If you are unsure which user is running the deployment
+      application, you can find the ReportMill
+      warning that
+      is printed (to the console or standard out) for unlicensed frameworks:</p>
+      <ul>
+        <li>Initializing ReportMill (Build Date: Feb-11-08, Version 11.0, JVM-1.5.2)</li>
+        <li>Warning: Unlicensed copy of ReportMill for host xxx and user yyy</li>
+      </ul>    
+    <p>To install the license key, simply log in as the appropriate user
+      and execute the following command:</p>
+      <p> prompt&gt; java -cp &lt;jar_path&gt;/ReportMillX.jar com.reportmill.Shell
+         -license &lt;license_key&gt;</p>    
+      <p>For example, for RM11:</p>
+      <p>prompt&gt; java -cp /ProjectJars/ReportMill11.jar com.reportmill.Shell
+        XXX-XXX-XXX</p>
+      <p>ReportMill should respond with &quot;License is valid and has been installed
+    on host xxx. for user yyy&quot;.</p>
+    <p><strong>Licensing Programmatically</strong></p>
+      <p>Alternatively, you can call the method ReportMill.setLicense(&quot;&lt;license_key&gt;&quot;), 
+        before any other ReportMill code is used. This is the recommended approach 
+        for ISV applications, but not for enterprise deployment (where different 
+        keys may be required depending on individual deployments).</p>
+      <p>Similarly, you could call com.reportmill.Shell.main() with a String
+        array, new String() { &quot;-license&quot;, &quot;&lt;license_key&gt;&quot; }. This would only
+        need to be called once for a given server, and is equivalent to the above
+        java command.</p>
+      <p><strong>Licensing the layout application</strong></p>
+    <p>The developer license simply removes the demo alert panel which appears
+    when you launch the layout application. You can enter your developer license,
+      by selecting the menu Tools-&gt;Preferences and clicking the &quot;License&quot; tab.
+    You can also conveniently add your deployment license here as an option to
+      the above method (for cases when a GUI is available).</p>
+    <p><strong>One Machine, One License</strong></p>
+    <p>Note, since your license covers CPUs - you may install the license key
+    for any number of users on a single machine. Also, you may re-use a single
+      license key for testing and redundancy machines (ReportMill only charges
+      for actual deployment CPUs).</p>
+    <p><strong>Trouble Shooting</strong></p>
+    <p>So far, these steps have worked for all customers. The most common problem
+    is installing the license key for the wrong user account. Be sure and check
+    the warning message discussed above to avoid or fix this. If you have other
+    feedback, please send a note to <a href="mailto:support@reportmill.com">support@reportmill.com</a>.</p></TD>
+  </TR>
+</TABLE>
+</BODY>
+
+
+<!-- Mirrored from reportmill.com/support/license.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:24 GMT -->
+</HTML>
+
+
+

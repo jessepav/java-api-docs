@@ -1,0 +1,141 @@
+<HTML>
+
+
+
+
+<!-- Mirrored from reportmill.com/support/swing-view/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:27 GMT -->
+<HEAD>
+
+
+
+  <TITLE>ReportMill - Swing Viewing and Printing</TITLE>
+
+
+
+
+
+<META NAME="description" CONTENT="ReportMill, object reporting for WebObjects.  Add the power of dynamic reporting to your web and database applications."> 
+
+
+
+<META NAME="keywords" CONTENT="ReportMill, Report, Mill, Object Reporting System, Dynamic PDF, Reports, Reporting, WebObjects, Crystal Reports, WYSIWYG, Rhapsody, Business Intelligence, Mac OS X, OpenStep, NextStep"> 
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+
+
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#CB0017" ALINK="#AA0000" VLINK="#808080">
+<FONT SIZE="1" FACE="Verdana, Helvetica, Arial"> 
+<MAP NAME="menu">
+
+<AREA SHAPE=RECT COORDS="274,7,385,34" HREF="http://reportmill.com/siteIndex.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="386,7,507,33" HREF="http://reportmill.com/info.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="507,8,637,36" HREF="http://www.reportmill.com/"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="507,35,636,61" HREF="http://reportmill.com/company/index.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="6,35,145,62" HREF="http://reportmill.com/product/index.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="145,35,268,62" HREF="http://reportmill.com/news/index.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="396,34,507,61" HREF="http://reportmill.com/index.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+<AREA SHAPE=RECT COORDS="269,34,394,62" HREF="http://reportmill.com/customers/index.html"  ALT=""  OnMouseOut="window.status=''; return true"  OnMouseOver="window.status=''; return true">
+
+</MAP>
+<TABLE WIDTH="640"  BORDER="0" CELLSPACING="0" CELLPADDING="0">
+
+<TR>
+
+  <TD WIDTH="640">
+
+  <CENTER>
+
+  <IMG SRC="../../../www.reportmill.com/images/menu.gif" USEMAP="#menu"  HEIGHT="64" WIDTH="640" ALT="Menu" BORDER="0">
+  </center></TD>
+
+</TR>
+
+</TABLE>
+
+
+
+
+
+</FONT>
+<p><FONT SIZE=1 FACE="Verdana, Helvetica, Arial" COLOR=#CB0017><A HREF="http://www.reportmill.com/">HOME</A> 
+  &gt; <a href="../../../www.reportmill.com/support/index-2.html">SUPPORT</a> &gt; SWING VIEWING AND PRINTING</FONT><BR>
+  <BR>
+  <FONT FACE="Georgia, Times, Times New Roman" SIZE=5>Swing Viewing and Printing</FONT></p>
+<TABLE WIDTH=638 height="978" BORDER=0 CELLPADDING=0 CELLSPACING=0>
+  <TR VALIGN=TOP> 
+    <TD WIDTH=1 height="978">&nbsp;</TD>
+    <TD width="637" align="left"><p><strong>Overview</strong></p>
+      <p>The majority of ReportMill developers use ReportMill in browser based, 
+        client-server applications. However, it is not uncommon to use ReportMill 
+        from a Swing based desktop application. In this context, it is often necessary 
+        to provide the user a means of viewing and printing reports. There are 
+        two options for this. One is to use the platform PDF viewer and the second 
+        is to use ReportMill's RMViewer component.</p>
+      <p><strong>Using the Platform PDF Viewer</strong></p>
+      <p>Using the platform PDF viewer is often the easiest and most fluid way 
+        to allow users to view and print generated reports. ReportMill itself 
+        does this for its &quot;preview reports&quot; feature. We do this with 
+        the following open method, which works for Macintosh and Windows:</p>
+      <p><font size="2" face="Courier New, Courier, mono">public static void openFile(String 
+        aName)<br>
+        {<br>
+        &nbsp;&nbsp;boolean isWin = System.getProperty(&quot;os.name&quot;).indexOf(&quot;Windows&quot;) 
+        &gt;= 0;<br>
+        </font><font size="2" face="Courier New, Courier, mono">&nbsp;&nbsp;String 
+        command = (isWin? &quot;explorer &quot; : &quot;open &quot;) + aName;<br>
+        &nbsp;&nbsp;try { Runtime.getRuntime().exec(command); }<br>
+        &nbsp;&nbsp;catch(Exception e) { e.printStackTrace(); }<br>
+        }</font></p>
+      <p>Using the platform PDF viewer is not only easy, it also offers several 
+        benefits: it presents a document using the standard interface generally 
+        already familiar to the user, it has native platform performance, it generally 
+        has some document manipulation features - such as page rotation/scale 
+        and image and text copy/paste and it generally has advanced native platform 
+        printing integration.</p>
+      <p><strong>Using ReportMill's RMViewer Component</strong></p>
+      <p>Having said all that, using ReportMill's viewer component is also easy 
+        and can sometimes provide a more integrated report viewing experience. 
+        Documentation for RMViewer is available in our <a href="../rm8/javadoc.html">javadocs</a>, 
+        however, most developers simply need to invoke code similar to this:</p>
+      <p><font size="2" face="Courier New, Courier, mono"> // Import Viewer package and
+          base <br>
+        import com.reportmill.*;<br>
+        import com.reportmill.base.*;
+        <br>
+        <br>
+        // Create new viewer 
+        and set document<br>
+        RMViewer viewer = new RMViewer();<br>
+        viewer.setDocument(myReport);<br>
+        <br>
+        // Create new scrollpane for viewer and install in a window</font><font size="2" face="Courier New, Courier, mono"><br>
+        JScrollPane scrollPane = new JScrollPane(viewer);<br>
+      myFrame.getContentPane().add(scrollPane, Border.CENTER);</font></p>
+      <p>It's also easy to perform direct printing with RMViewer:</p>
+      <p><font size="2" face="Courier New, Courier, mono">new RMViewer(aDocument).print();</font></p>
+      <p><strong>An Example</strong></p>
+      <p>We've implemented a nice example of using ReportMill's RMViewer in a
+         simple Swing application. Although most ReportMill applications take
+        advantage  of the powerful layout application, this example is a simple
+        port of our  web based AdHoc example and thus generates a template dynamically
+        based  on user selected attributes. This example is available here:</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://reportmill.com/examples/adhoc">http://reportmill.com/examples/adhoc</a></p>
+    </TD>
+  </TR>
+</TABLE>
+</BODY>
+
+
+<!-- Mirrored from reportmill.com/support/swing-view/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:27 GMT -->
+</HTML>
+
+
+

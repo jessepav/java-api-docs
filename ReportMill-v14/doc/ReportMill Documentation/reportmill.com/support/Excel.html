@@ -1,0 +1,84 @@
+<HTML>
+
+<!-- Mirrored from reportmill.com/support/Excel.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:25 GMT -->
+<HEAD>
+<TITLE>ReportMill - Excel and CSV Generation</TITLE>
+<META NAME="keywords" CONTENT="ReportMill, Report, Mill, Object Reporting System, Dynamic PDF, Reports, Reporting, WebObjects, Crystal Reports, WYSIWYG, Rhapsody, Business Intelligence, Mac OS X"> 
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#CB0017" ALINK="#AA0000" VLINK="#808080">
+
+<script src="../shared/navbar.js" ></script>
+
+<p><FONT SIZE=1 FACE="Verdana, Helvetica, Arial" COLOR=#CB0017><A HREF="http://www.reportmill.com/">HOME</A> 
+  &gt; <a href="http://reportmill.com/">SUPPORT</a> &gt; EXCEL GENERATION</FONT><BR>
+  <BR>
+  <FONT FACE="Georgia, Times, Times New Roman" SIZE=5>Excel and CSV Generation</FONT></p>
+<TABLE WIDTH=715 height="734" BORDER=0 CELLPADDING=0 CELLSPACING=0>
+  <TR VALIGN=TOP> 
+    <TD WIDTH=1 height="734">&nbsp;</TD>
+    <TD width="714" align="left"><p><font size="5"><strong>Overview</strong></font></p>
+      <p>ReportMill offers a simple means to generate Excel and CSV (comma separated 
+        value) reports. Like ReportMill's other output options, it's simply a 
+        matter of asking a report document for its Excel or CSV bytes:</p>
+      <p><font color="#FF0000" size="2" face="Courier New, Courier, mono">// Get 
+        template and generate report as normal</font><font size="2" face="Courier New, Courier, mono"><br>
+        RMDocument template = new RMDocument(aSource);<br>
+        RMDocument report = template.generateReport(myJavaDataset, false);<br>
+        <br>
+        <font color="#FF0000">// Now get Excel or CSV bytes</font><br>
+        byte excelBytes[] = report.getBytesExcel();<br>
+        byte csvBytes[] = report.getBytesCSV();<br>
+        <font color="#FF0000"><br>
+        // Or simply write Excel or CSV to a file String</font><br>
+        report.writeExcel(&quot;MyReport.xls&quot;);<br>
+        report.writeCSV(&quot;MyReport.csv&quot;); </font></p>
+      <p><font size="5"><strong>Dependencies (Excel only)</strong></font></p>      
+      <p>Excel generation depends on the OpenSource POI project (<a href="http://jakarta.apache.org/poi">http://jakarta.apache.org/poi</a>).
+         We currently use the POI 3.0 jar. Since the jar is a little too big
+        for  our standard distribution (800k), we require developers to download
+        it  separately. You can download the complete POI distribution at the
+        Apache  site or here's a quick link to a version at ReportMill: <a href="../../www.reportmill.com/jars/poi30-rm.html">http://www.reportmill.com/jars/poi30-rm.jar</a>.
+        This version is preferable, because it includes a bug fix implemented
+        by ReportMill to fix the placement of graphics in a worksheet. </p>
+      <p>The Poi jar needs to be made available to your Java application in the 
+        same manner as the ReportMill jar (search your application server documentation 
+        for the phrase &quot;Adding third party jars&quot;). Generally this means 
+        adding the jar to your CLASSPATH or merging it into your application.</p>
+      <p>Also, the developer layout application offers a Preview Excel menu item. 
+        This will only work if the POI jar has been made available to the layout 
+        application. Since the layout application uses Java Web Start, you either 
+        have to add this to your Java extensions directory or you have to run 
+        the app from the commandline, including a reference to the POI jar:</p>
+      <p><font size="2" face="Courier New, Courier, mono"><strong>prompt&gt; java
+             -cp ReportMill8.jar:poi30-rm.jar com.reportmill.App</strong></font></p>
+      <p><font size="5"><strong>Discrepancies</strong></font></p>
+      <p>Unlike PDF, Flash and even HTML, neither Excel nor CSV come close to 
+        being page description formats. So developers should expect to get a data 
+        representation of the report - and not a WYSIWG representation. Because 
+        of this, using ReportMill to generate these files is somewhat of an overkill. 
+        You can often generate useful Excel and CSV files with a simple Java for 
+        loop with some StringBuffer appends. However, we understand the convenience 
+        of using ReportMill to generate these (and, of course, you get sorting, 
+        grouping and aggregating for free).</p>
+      <p>To get the best results for these output formats, you may want to create 
+        special, simpler versions of certain templates. In particular, these reports 
+        work best with tables containing structured rows (see the tables document 
+        for information on this).</p>
+      <p><font size="5"><strong>Excel vs CSV</strong></font></p>
+      <p>We recommend CSV whenever possible. This format is more generic and portable. 
+        However, Excel is nice because it retains basic font formatting (bold, 
+        italic) and relative column widths, and it may also save users the extra 
+        step of importing the CSV file.</p>
+      <p>&nbsp;</p>
+    </TD>
+  </TR>
+</TABLE>
+</BODY>
+
+
+<!-- Mirrored from reportmill.com/support/Excel.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 07 Dec 2017 00:22:25 GMT -->
+</HTML>
+
+
+
