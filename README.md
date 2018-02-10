@@ -37,6 +37,8 @@
                    `     --` Download: [joda-time-2.9.4.jar](jars/joda-time-2.9.4.jar)
 - jSerialComm-1.3.11 [(no frames)](jSerialComm-1.3.11/allclasses-noframe.html) [(frames)](jSerialComm-1.3.11/index.html)  
               `     --` Download: [jSerialComm-1.3.11.jar](jars/jSerialComm-1.3.11.jar)
+- json-simple-3.0.2 [(no frames)](json-simple-3.0.2/allclasses-noframe.html) [(frames)](json-simple-3.0.2/index.html)  
+              `     --` Download: [json-simple-3.0.2.jar](jars/json-simple-3.0.2.jar)
 - Orson PDF 1.7 [(no frames)](orsonpdf-1.7-javadoc/allclasses-noframe.html) [(frames)](orsonpdf-1.7-javadoc/index.html)  
               `     --` Download: [orsonpdf-1.7.jar](jars/orsonpdf-1.7.jar)
 - ReportMill v14 [(no frames)](ReportMill-v14/javadoc/allclasses-noframe.html) [(frames)](ReportMill-v14/javadoc/index.html)  
